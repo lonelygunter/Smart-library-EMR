@@ -1,10 +1,10 @@
 {
   : http://json-schema.org/schema,
   : 0.0.1,
-  : https://smart-data-models.github.io/XXXSubjectXXX/XXXDataModelXXX/schema.json,
-  title: Smart Data models -Person schema,
+  : https://github.com/lonelygunter/Smart-library-EMR/tree/SmartDataModels/SmartDataModels/Person/schema.json,
+  title: Smart Data models Person schema,
   modelTags: ,
-  description: description of a student.,
+  description: description of a student,
   type: object,
   required: [
     id,
