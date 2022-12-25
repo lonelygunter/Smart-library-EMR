@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema",
   "$schemaVersion": "0.0.1",
-  "$id": "https://smart-data-models.github.io/XXXSubjectXXX/XXXDataModelXXX/schema.json",
+  "$id": "https://github.com/lonelygunter/Smart-library-EMR/tree/SmartDataModels/SmartDataModels/Book/schema.json",
   "title": "Smart Data models -XXXdataModelXXX schema",
   "modelTags": "",
   "description": "description of a generic entity. You have to change this.",
