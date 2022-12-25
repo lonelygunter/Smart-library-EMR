@@ -1,0 +1,59 @@
+// Instructions for creating your schema
+// 1.- respect the HEADER
+// 2.- there are 8 types of examples field1XXX to field9XXX
+// HEADER ***Do not change any of these till next warning***
+$schema =   http://json-schema.org/schema
+$schemaVersion = 0.0.1
+$id = https://smart-data-models.github.io/XXXSubjectXXX/XXXDataModelXXX/schema.json
+title = Smart Data models -Library schema"
+modelTags = ""
+description = description of a generic library. 
+type = object
+required[] = id, type
+allOf[0]
+  $ref=https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons
+allOf[1]
+  $ref=https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons
+// HEADER  ***this is the end of the header ***
+// you can start configuring this 
+allOf[2]
+  properties
+
+
+// Create a simple string attribute
+    address
+      type = string
+      description = Property. Model:'https://schema.org/Text'. Example of definition of a numerical attribute
+
+// Create a simple string attribute
+    department
+      type = string
+      description = Property. Model:'https://schema.org/Text'. Example of definition of a numerical attribute
+
+// Create a simple string attribute
+    legalName
+      type = string
+      description = Property. Model:'https://schema.org/Text'. Example of definition of a numerical attribute
+
+// Create a simple string attribute
+    openingHours
+      type = string
+      description = Property. Model:'https://schema.org/Text'. Example of definition of a numerical attribute
+
+// Create a relationship
+    hasBooks
+      anyOf[0]
+        type = string
+        minLength number = 1
+        maxLength number = 256
+        pattern = ^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$
+        description = Property. Identifier format of any NGSI entity
+      anyOf[1]
+         type = string
+         format = uri
+         description = Property. Identifier format of any NGSI entity
+       description = Relationship. Reference to the other entity 
+
+ required[] string = id, type
+ derivedFrom = ""
+ license = ""

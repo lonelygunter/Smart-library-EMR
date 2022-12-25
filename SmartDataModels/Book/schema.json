@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$schemaVersion": "0.0.1",
+  "$id": "https://smart-data-models.github.io/XXXSubjectXXX/XXXDataModelXXX/schema.json",
+  "title": "Smart Data models -XXXdataModelXXX schema",
+  "modelTags": "",
+  "description": "description of a generic entity. You have to change this.",
+  "type": "object",
+  "required": [
+    "id",
+    "type"
+  ],
+  "allOf": [
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+    },
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+    },
+    {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Property. Model:'https://schema.org/Text'. Example of definition of a numerical attribute",
+          "": {}
+        },
+        "author": {
+          "type": "string",
+          "description": "Property. Model:'https://schema.org/Text'. Example of definition of a numerical attribute",
+          "": {}
+        },
+        "genre": {
+          "type": "string",
+          "description": "Property. Model:'https://schema.org/Text'. Example of definition of a numerical attribute",
+          "": {}
+        },
+        "publisher": {
+          "type": "string",
+          "description": "Property. Model:'https://schema.org/Text'. Example of definition of a numerical attribute",
+          "": {}
+        },
+        "isbn": {
+          "type": "string",
+          "description": "Property. Model:'https://schema.org/Text'. Example of definition of a numerical attribute"
+        },
+        "datePublished": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Property. Model:'https://schema.org/Text'. Example of definition of a date-time attribute"
+        }
+      }
+    }
+  ],
+  "derivedFrom": "",
+  "license": ""
+}

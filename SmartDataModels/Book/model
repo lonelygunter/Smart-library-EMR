@@ -1,0 +1,57 @@
+// Instructions for creating your schema
+// 1.- respect the HEADER
+// 2.- there are 8 types of examples field1XXX to field9XXX
+// HEADER ***Do not change any of these till next warning***
+$schema =   http://json-schema.org/schema
+$schemaVersion = 0.0.1
+$id = https://smart-data-models.github.io/XXXSubjectXXX/XXXDataModelXXX/schema.json
+title = Smart Data models -XXXdataModelXXX schema"
+modelTags = ""
+description = description of a generic entity. You have to change this.
+type = object
+required[] = id, type
+allOf[0]
+  $ref=https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons
+allOf[1]
+  $ref=https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons
+// HEADER  ***this is the end of the header ***
+// you can start configuring this 
+allOf[2]
+  properties
+
+
+// Create a simple string attribute
+    name
+      type = string
+      description = Property. Model:'https://schema.org/Text'. Example of definition of a numerical attribute
+      
+      // Create a simple string attribute
+    author
+      type = string
+      description = Property. Model:'https://schema.org/Text'. Example of definition of a numerical attribute
+      
+      // Create a simple string attribute
+    genre
+      type = string
+      description = Property. Model:'https://schema.org/Text'. Example of definition of a numerical attribute    
+      
+       // Create a simple string attribute
+    publisher
+      type = string
+      description = Property. Model:'https://schema.org/Text'. Example of definition of a numerical attribute
+      
+       // Create a simple string attribute
+    isbn
+      type = string
+      description = Property. Model:'https://schema.org/Text'. Example of definition of a numerical attribute   
+
+// Create a date time attribute
+    datePublished 
+      type = string
+      format = date-time
+      description = Property. Model:'https://schema.org/Text'. Example of definition of a date-time attribute 
+
+
+ required[] string = id, type
+ derivedFrom = ""
+ license = ""
