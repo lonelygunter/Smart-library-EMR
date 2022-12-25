@@ -1,0 +1,45 @@
+{
+  : http://json-schema.org/schema,
+  : 0.0.1,
+  : https://smart-data-models.github.io/XXXSubjectXXX/XXXDataModelXXX/schema.json,
+  title: Smart Data models -Person schema,
+  modelTags: ,
+  description: description of a student.,
+  type: object,
+  required: [
+    id,
+    type
+  ],
+  allOf: [
+    {
+      : https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons
+    },
+    {
+      : https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons
+    },
+    {
+      properties: {
+        givenName: {
+          type: string,
+          description: Property. Model:https://schema.org/Text. Example of definition of a numerical attribute,
+          : {}
+        },
+        familyName: {
+          type: string,
+          description: Property. Model:https://schema.org/Text. Example of definition of a numerical attribute,
+          : {}
+        },
+        email: {
+          type: string,
+          description: Property. Model:https://schema.org/Text. Example of definition of a numerical attribute
+        },
+        memberOf: {
+          type: string,
+          description: Property. Model:https://schema.org/Text. Example of definition of a numerical attribute
+        }
+      }
+    }
+  ],
+  derivedFrom: ,
+  license: 
+}
