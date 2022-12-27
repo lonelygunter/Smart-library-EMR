@@ -170,3 +170,7 @@ Library:
           type: string
           x-ngsi:
             attr-type: Relationship
+  type: object
+  x-ngsi:
+    uri: 'https://schema.org/Library'
+    uri-prefix: 'https://schema.org/'
