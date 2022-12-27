@@ -158,9 +158,9 @@ Library:
         uri: 'https://schema.org/openingHours'
     hasOfferCatalog:
       description: Physical address of the item.
-      type: string
+      type: OfferCatalog
       x-ngsi:
-        model: 'https://schema.org/Text'
+        model: 'https://schema.org/OfferCatalog'
         type: Property
         uri: 'https://schema.org/hasOfferCatalog'
         uri-prefix: 'https://schema.org/'
