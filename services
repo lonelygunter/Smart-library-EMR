@@ -20,7 +20,7 @@ fi
 
 if (( $# < 1 )); then
 	echo "Illegal number of parameters"
-	echo "usage: services [create|orion|scorpio|stellio|stellio|stop]"
+	echo "usage: services [create|orion|scorpio|stellio|stellio|stop|markdown|ngsi|jsonld|validate]"
 	exit 1
 fi
 
@@ -150,7 +150,7 @@ displayServices () {
 command="$1"
 case "${command}" in
 	"help")
-		echo "usage: services [create|orion|scorpio|stellio|stellio|stop]"
+		echo "usage: services [create|orion|scorpio|stellio|stellio|stop|markdown|ngsi|jsonld|validate]"
 		;;
 	"orion")
 		export $(cat .env | grep "#" -v)
@@ -202,9 +202,32 @@ case "${command}" in
 		docker pull curlimages/curl
 		${dockerCmd} -f docker-compose/common.yml -f docker-compose/scorpio-aaio.yml -f docker-compose/orion-ld.yml -f docker-compose/stellio.yml pull
 		;;
+	"create_context")
+	export $(cat .env | grep "#" -v)
+	export $(cat .env | grep "#" -v)
+	 docker build -t contextgen ./context-file-generator   
+	;;
+	"markdown")
+		echo "Creating Documentation for the Data Models"
+		docker run --rm -v $(pwd)/:/files contextgen markdown -i "/files/${file}" > datamodels.md
+		echo "datamodels.md created"
+		;;
+	"ngsi")
+		echo "Creating a NGSI-LD @context file for normalized interactions"
+		docker run --rm -v $(pwd)/:/files contextgen ngsi -i "/files/${file}" > datamodels.context-ngsi.jsonld
+		echo "datamodels.context-ngsi.jsonld created"
+		;;
+	"jsonld")
+		echo "Creating a JSON-LD @context file for key-values interactions"
+		docker run --rm -v $(pwd)/:/files contextgen jsonld -i "/files/${file}" > datamodels.context.jsonld
+		echo "datamodels.context.jsonld created"
+		;;
+	"validate")
+		docker run --rm -v $(pwd)/:/files contextgen validate -i "/files/${file}"
+		;;
 	*)
 		echo "Command not Found."
-		echo "usage: services [create|orion|scorpio|stellio|stellio|stop]"
+		echo "usage: services [create|orion|scorpio|stellio|stellio|stop|markdown|ngsi|jsonld|validate]"
 		exit 127;
 		;;
 esac

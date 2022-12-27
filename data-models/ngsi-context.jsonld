@@ -11,6 +11,7 @@
         "person": "schema:Person#",
 
         "book": "schema:Book",
-	    "library": "schema:Library"
+ 	"isbn": "schema:isbn"
+	"library": "schema:Library"
     }
 }
