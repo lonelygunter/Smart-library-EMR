@@ -37,3 +37,164 @@ Person:
   x-ngsi: 
     uri: "https://schema.org/Person"
     uri-prefix: "https://schema.org/"
+    
+Book:
+ properties:
+  isbn:
+   description: "The ISBN of the book."
+   type: string
+   x-ngsi: 
+    model: "https://schema.org/Text"
+    type: Property
+    uri: "https://schema.org/isbn"
+    uri-prefix: "https://schema.org/"    
+  name:
+   description: "The name of the item."
+   type: string
+   x-ngsi: 
+    model: "https://schema.org/Text"
+    type: Property
+    uri: "https://schema.org/name"
+    uri-prefix: "https://schema.org/" 
+  abstract:
+   description: "An abstract is a short description that summarizes a CreativeWork."
+   type: string
+   x-ngsi: 
+    model: "https://schema.org/Text"
+    type: Property
+    uri: "https://schema.org/abstract"
+    uri-prefix: "https://schema.org/" 
+  author:
+   description: "The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably."
+   type: string
+   x-ngsi: 
+    model: "https://schema.org/Text"
+    type: Property
+    uri: "https://schema.org/author"
+    uri-prefix: "https://schema.org/"    
+  genre:
+   description: "Genre of the creative work, broadcast channel or group."
+   type: string
+   x-ngsi: 
+    model: "https://schema.org/Text"
+    type: Property
+    uri: "https://schema.org/genre"
+    uri-prefix: "https://schema.org/" 
+  publisher:
+   description: "The publisher of the creative work."
+   type: string
+   x-ngsi: 
+    model: "https://schema.org/Text"
+    type: Property
+    uri: "https://schema.org/publisher"
+    uri-prefix: "https://schema.org/" 
+  datePublished:
+   description: "Date of first broadcast/publication."
+   format: date
+   type: string
+   x-ngsi: 
+    model: "https://schema.org/Date"
+    type: Property
+    uri: "https://schema.org/datePublished"
+    uri-prefix: "https://schema.org/" 
+ type: object
+  x-ngsi: 
+   uri: "https://schema.org/Book"
+   uri-prefix: "https://schema.org/"
+
+
+
+Library:
+ 
+ properties:
+  
+  legalName: 
+   description: "The official name of the organization, e.g. the registered company name."
+   type: string
+   x-ngsi: 
+    model: "https://schema.org/Text"
+    type: Property
+    uri: "https://schema.org/legalName"
+    uri-prefix: "https://schema.org/"
+  
+  address: 
+   description: "Physical address of the item."
+   type: string
+   x-ngsi: 
+    model: "https://schema.org/Text"
+    type: Property
+    uri: "https://schema.org/address"
+    uri-prefix: "https://schema.org/"
+  
+  department: 
+   description: "A relationship between an organization and a department of that organization, also described as an organization (allowing different urls, logos, opening hours). For example: a store with a pharmacy, or a bakery with a cafe."
+   type: string
+   x-ngsi: 
+    model: "https://schema.org/Text"
+    type: Property
+    uri: "https://schema.org/department"
+    uri-prefix: "https://schema.org/"
+  
+  address: 
+   description: "Physical address of the item."
+   type: string
+   x-ngsi: 
+    model: "https://schema.org/Text"
+    type: Property
+    uri: "https://schema.org/address"
+    uri-prefix: "https://schema.org/"
+   
+  openingHours: 
+   externalDocs: 
+    url: "https://schema.org/openingHours"
+   items: 
+    properties: 
+     type: 
+      type: string
+     values: 
+      items: 
+       type: string
+      type: array
+    type: object
+   type: array
+   x-ngsi: 
+    model: "https://schema.org/openingHours"
+    type: Property
+    uri: "https://schema.org/openingHours"
+   
+  hasBooks:
+   description: "Books in the library"
+    properties:
+     numberOfCopies: 
+      description: "The number of items of the product currently found on the shelf"
+      type: integer
+      x-ngsi: 
+      attr-type: Property
+     theBook: 
+      description: "The book currently found on the Shelf Unit"
+      format: uri
+      type: string
+      x-ngsi: 
+       attr-type: Relationship
+   
+  
+#    Shelf: 
+ #     allOf: 
+  #      - 
+   #      Shelf $ref: "https://fiware.github.io/tutorials.NGSI-LD/models/ngsi-ld.yaml#/Common"
+    #  description: "a unit of Store Furniture. Products are found on a shelf"
+     # properties: 
+
+      #  numberOfTheBook: 
+       #   description: "The number of items of the product currently found on the shelf"
+        #  type: integer
+         # x-ngsi: 
+          #  attr-type: Property
+       # theBook: 
+        #  description: "The book currently found on the Shelf Unit"
+         # format: uri
+         # type: string
+         # x-ngsi: 
+         #   attr-type: Relationship
+      #x-ngsi: 
+        #uri-prefix: "https://fiware.github.io/tutorials.Step-by-Step/schema/"

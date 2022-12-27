@@ -4,7 +4,9 @@ components:
 
     # This is a defintion of a person.
     Person:
-      $ref: "https://github.com/lonelygunter/Smart-library-EMR/tree/SmartDataModels/models/schema.org.yaml#/Person"
+      $ref: "https://raw.githubusercontent.com/lonelygunter/Smart-library-EMR/SmartDataModels/models/schema.org.yaml#/Person"
+    Book:
+      $ref: "https://raw.githubusercontent.com/lonelygunter/Smart-library-EMR/SmartDataModels/models/schema.org.yaml#/Book"
 info: 
   description: "Base Model Definitions from Smart Data Models"
   title: Baseline Models
