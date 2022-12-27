@@ -156,21 +156,45 @@ Library:
         model: 'https://schema.org/openingHours'
         type: Property
         uri: 'https://schema.org/openingHours'
-    hasBooks:
-      description: Books in the library
-      properties:
-        numberOfCopies:
-          description: The number of items of the product currently found on the shelf
-          type: integer
-          x-ngsi: null
-          attr-type: Property
-        theBook:
-          description: The book currently found on the Shelf Unit
-          format: uri
-          type: string
-          x-ngsi:
-            attr-type: Relationship
+    hasOfferCatalog:
+      description: Physical address of the item.
+      type: string
+      x-ngsi:
+        model: 'https://schema.org/Text'
+        type: Property
+        uri: 'https://schema.org/hasOfferCatalog'
+        uri-prefix: 'https://schema.org/'
   type: object
   x-ngsi:
     uri: 'https://schema.org/Library'
+    uri-prefix: 'https://schema.org/'
+OfferCatalog:
+  properties:
+    itemListElement:
+      description: >-
+        Text values are best if the elements in the list are plain strings.
+        Existing entities are best for a simple, unordered list of existing
+        things in your data. ListItem is used with ordered lists when you want
+        to provide additional context about the element in that list or when the
+        same item might be in different places in different lists.
+      type: Thing
+      x-ngsi:
+        model: 'https://schema.org/Thing'
+        type: Property
+        uri: 'https://schema.org/itemListElement'
+        uri-prefix: 'https://schema.org/'
+    numberOfItems:
+      description: >-
+        The number of items in an ItemList. Note that some descriptions might
+        not fully describe all items in a list (e.g., multi-page pagination); in
+        such cases, the numberOfItems would be for the entire list.
+      type: Integer
+      x-ngsi:
+        model: 'https://schema.org/Integer'
+        type: Property
+        uri: 'https://schema.org/numberOfItems'
+        uri-prefix: 'https://schema.org/'
+  type: object
+  x-ngsi:
+    uri: 'https://schema.org/OfferCatalog'
     uri-prefix: 'https://schema.org/'
