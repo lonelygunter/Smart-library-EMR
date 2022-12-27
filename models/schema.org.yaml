@@ -100,6 +100,6 @@ Book:
     uri: "https://schema.org/datePublished"
     uri-prefix: "https://schema.org/" 
  type: object
-  x-ngsi: 
-   uri: "https://schema.org/Book"
-   uri-prefix: "https://schema.org/"
+ x-ngsi: 
+  uri: "https://schema.org/Book"
+  uri-prefix: "https://schema.org/"
