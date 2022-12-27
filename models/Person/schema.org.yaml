@@ -1,0 +1,31 @@
+--- 
+Person: 
+  properties: 
+    email: 
+      description: "Email address."
+      type: string
+      x-ngsi: 
+        model: "https://schema.org/Text"
+        type: Property
+        uri: "https://schema.org/email"
+        uri-prefix: "https://schema.org/"
+    familyName: 
+      description: "Family name. In the U.S., the last name of an Person. This can be used along with givenName instead of the name property."
+      type: string
+      x-ngsi: 
+        model: "https://schema.org/Text"
+        type: Property
+        uri: "https://schema.org/familyName"
+        uri-prefix: "https://schema.org/"
+    givenName: 
+      description: "Given name. In the U.S., the first name of a Person. This can be used along with familyName instead of the name property."
+      type: string
+      x-ngsi: 
+        model: "https://schema.org/Text"
+        type: Property
+        uri: "https://schema.org/givenName"
+        uri-prefix: "https://schema.org/"
+  type: object
+  x-ngsi: 
+    uri: "https://schema.org/Person"
+    uri-prefix: "https://schema.org/"
