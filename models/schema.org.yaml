@@ -176,25 +176,3 @@ Library:
       type: string
       x-ngsi: 
        attr-type: Relationship
-   
-  
-#    Shelf: 
- #     allOf: 
-  #      - 
-   #      Shelf $ref: "https://fiware.github.io/tutorials.NGSI-LD/models/ngsi-ld.yaml#/Common"
-    #  description: "a unit of Store Furniture. Products are found on a shelf"
-     # properties: 
-
-      #  numberOfTheBook: 
-       #   description: "The number of items of the product currently found on the shelf"
-        #  type: integer
-         # x-ngsi: 
-          #  attr-type: Property
-       # theBook: 
-        #  description: "The book currently found on the Shelf Unit"
-         # format: uri
-         # type: string
-         # x-ngsi: 
-         #   attr-type: Relationship
-      #x-ngsi: 
-        #uri-prefix: "https://fiware.github.io/tutorials.Step-by-Step/schema/"
