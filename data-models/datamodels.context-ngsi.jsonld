@@ -1,0 +1,14 @@
+{
+    "@context": {
+        "type": "@type",
+        "id": "@id",
+        "ngsi-ld": "https://uri.etsi.org/ngsi-ld/",
+        "fiware": "https://uri.fiware.org/ns/data-models#",
+        "schema": "https://schema.org/",
+        "Person": "schema:Person",
+        "email": "schema:email",
+        "familyName": "schema:familyName",
+        "givenName": "schema:givenName",
+        "memberOf": "schema:memberOf"
+    }
+}

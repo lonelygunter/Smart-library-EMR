@@ -1,0 +1,113 @@
+{
+    "@context": {
+        "type": "@type",
+        "id": "@id",
+        "ngsi-ld": "https://uri.etsi.org/ngsi-ld/",
+        "fiware": "https://uri.fiware.org/ns/data-models#",
+        "schema": "https://schema.org/",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "Person": "schema:Person",
+        "email": {
+            "@id": "schema:email",
+            "@type": "xsd:string"
+        },
+        "familyName": {
+            "@id": "schema:familyName",
+            "@type": "xsd:string"
+        },
+        "givenName": {
+            "@id": "schema:givenName",
+            "@type": "xsd:string"
+        },
+        "memberOf": {
+            "@id": "schema:memberOf",
+            "@type": "xsd:string"
+        }
+    },
+    "@graph": [
+        {
+            "@id": "schema:Person",
+            "@type": "rdfs:Class",
+            "rdfs:comment": [
+                {
+                    "@language": "en",
+                    "@value": ""
+                }
+            ],
+            "rdfs:label": [
+                {
+                    "@language": "en",
+                    "@value": "Person"
+                }
+            ],
+            "rdfs:subClassOf": {
+                "@id": "schema:Thing"
+            }
+        },
+        {
+            "@id": "schema:email",
+            "@type": "ngsi-ld:Property",
+            "rdfs:comment": [
+                {
+                    "@language": "en",
+                    "@value": "Email address."
+                }
+            ],
+            "rdfs:label": [
+                {
+                    "@language": "en",
+                    "@value": "email"
+                }
+            ]
+        },
+        {
+            "@id": "schema:familyName",
+            "@type": "ngsi-ld:Property",
+            "rdfs:comment": [
+                {
+                    "@language": "en",
+                    "@value": "Family name. In the U.S., the last name of an Person. This can be used along with givenName instead of the name property."
+                }
+            ],
+            "rdfs:label": [
+                {
+                    "@language": "en",
+                    "@value": "familyName"
+                }
+            ]
+        },
+        {
+            "@id": "https://schema.orggivenName",
+            "@type": "ngsi-ld:Property",
+            "rdfs:comment": [
+                {
+                    "@language": "en",
+                    "@value": "Given name. In the U.S., the first name of a Person. This can be used along with familyName instead of the name property."
+                }
+            ],
+            "rdfs:label": [
+                {
+                    "@language": "en",
+                    "@value": "givenName"
+                }
+            ]
+        },
+        {
+            "@id": "schema:memberOf",
+            "@type": "ngsi-ld:Property",
+            "rdfs:comment": [
+                {
+                    "@language": "en",
+                    "@value": "An Organization (or ProgramMembership) to which this Person or Organization belongs."
+                }
+            ],
+            "rdfs:label": [
+                {
+                    "@language": "en",
+                    "@value": "memberOf"
+                }
+            ]
+        }
+    ]
+}
