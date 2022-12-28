@@ -163,7 +163,7 @@ Library:
         model: 'https://schema.org/OfferCatalog'
       type: string
       x-ngsi:
-        model: 'https://schema.org/Text'
+        model: 'https://schema.org/OfferCatalog'
         type: Property
         uri: 'https://schema.org/hasOfferCatalog'
         uri-prefix: 'https://schema.org/'
