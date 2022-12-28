@@ -1,0 +1,23 @@
+curl -iX POST 'http://localhost:1026/ngsi-ld/v1/entities/' -H 'Content-Type: application/ld+json' --data-raw '{
+    id: urn:ngsi-ld:Person:person001,
+    type: Person,
+
+    email: {
+        type: Property,
+        value: roberto.vadacca@studenti.unisalento.it
+    },
+    familyName: {
+        type: Property,
+        value: Vadacca
+    },
+    givenName: {
+        type: Property,
+        value: Roberto
+    },
+    memberOf: {
+        type: Property,
+        value: Ingegneria Informatica
+    },
+    @context: http://context/ngsi-context.jsonld
+}'
+

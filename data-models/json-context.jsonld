@@ -22,6 +22,10 @@
             "@id": "schema:author",
             "@type": "xsd:string"
         },
+        "avaibleSeats": {
+            "@id": "schema:value",
+            "@type": "xsd:integer"
+        },
         "datePublished": {
             "@id": "schema:datePublished",
             "@type": "xsd:string"
@@ -46,14 +50,13 @@
             "@id": "schema:givenName",
             "@type": "xsd:string"
         },
-        "hasOfferCatalog": "schema:hasOfferCatalog",
+        "isAvailable": {
+            "@id": "schema:value",
+            "@type": "xsd:boolean"
+        },
         "isbn": {
             "@id": "schema:isbn",
             "@type": "xsd:string"
-        },
-        "itemListElement": {
-            "@id": "schema:itemListElement",
-            "@type": "xs:anyURI"
         },
         "legalName": {
             "@id": "schema:legalName",
@@ -66,10 +69,6 @@
         "name": {
             "@id": "schema:name",
             "@type": "xsd:string"
-        },
-        "numberOfItems": {
-            "@id": "schema:numberOfItems",
-            "@type": "xsd:integer"
         },
         "openingHours": {
             "@id": "schema:openingHours",
@@ -315,6 +314,22 @@
             ]
         },
         {
+            "@id": "schema:isAvailable",
+            "@type": "ngsi-ld:Property",
+            "rdfs:comment": [
+                {
+                    "@language": "en",
+                    "@value": "boolean flag to check availability"
+                }
+            ],
+            "rdfs:label": [
+                {
+                    "@language": "en",
+                    "@value": "isAvailable"
+                }
+            ]
+        },
+        {
             "@id": "schema:legalName",
             "@type": "ngsi-ld:Property",
             "rdfs:comment": [
@@ -379,18 +394,18 @@
             ]
         },
         {
-            "@id": "schema:hasOfferCatalog",
+            "@id": "schema:avaibleSeats",
             "@type": "ngsi-ld:Property",
             "rdfs:comment": [
                 {
                     "@language": "en",
-                    "@value": "Physical address of the item."
+                    "@value": "the available number of seats in the library"
                 }
             ],
             "rdfs:label": [
                 {
                     "@language": "en",
-                    "@value": "hasOfferCatalog"
+                    "@value": "avaibleSeats"
                 }
             ]
         }

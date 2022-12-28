@@ -1,0 +1,26 @@
+curl -iX POST 'http://localhost:1026/ngsi-ld/v1/entities/' -H 'Content-Type: application/ld+json' --data-raw '{
+    "id": "urn:ngsi-ld:Library:library001",
+    "type": "Library",
+
+    "legalName": {
+        "type": "Property",
+        "value": "Biblioteca LaStecca"
+    },
+    "address": {
+        "type": "Property",
+        "value": "Aula XX - Edificio Stecca"
+    },
+    "department": {
+        "type": "Property",
+        "value": "Ingegneria"
+    },                                                                                                              
+    "openingHours": {                                                                                                     
+        "type": "Property",
+        "value": "9:00/13:00"
+    },                           
+    "avaibleSeats": {                   
+        "type": "Property",
+        "value": "30"
+    },                       
+    "@context": "http://context/ngsi-context.jsonld"
+}'
