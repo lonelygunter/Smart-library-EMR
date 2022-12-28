@@ -182,7 +182,8 @@ OfferCatalog:
         things in your data. ListItem is used with ordered lists when you want
         to provide additional context about the element in that list or when the
         same item might be in different places in different lists.
-      type: Thing
+      format: uri
+      type: string
       x-ngsi:
         model: 'https://schema.org/Thing'
         type: Property
