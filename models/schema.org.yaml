@@ -157,16 +157,18 @@ Library:
         type: Property
         uri: 'https://schema.org/openingHours'
     hasOfferCatalog:
+      allOf:
+        -
+          $ref: "#/OfferCatalog"
       description: Physical address of the item.
-      type: OfferCatalog
+      externalDocs:
+        url: 'https://schema.org/hasOfferCatalog'
+      type: object
       x-ngsi:
-        model: 'https://schema.org/OfferCatalog'
-      type: string
-      x-ngsi:
-        model: 'https://schema.org/OfferCatalog'
-        type: Property
-        uri: 'https://schema.org/hasOfferCatalog'
+        attr-type: Property
+        model: 'https://schema.org/hasOfferCatalog'
         uri-prefix: 'https://schema.org/'
+
   type: object
   x-ngsi:
     uri: 'https://schema.org/Library'
