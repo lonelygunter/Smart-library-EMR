@@ -185,7 +185,7 @@ OfferCatalog:
       format: uri
       type: string
       x-ngsi:
-        model: 'https://schema.org/Thing'
+        model: 'https://schema.org/Text'
         type: Property
         uri: 'https://schema.org/itemListElement'
         uri-prefix: 'https://schema.org/'
