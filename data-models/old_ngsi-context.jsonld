@@ -1,0 +1,29 @@
+{
+    "@context": {
+        "type": "@type",
+        "id": "@id",
+        "ngsi-ld": "https://uri.etsi.org/ngsi-ld/",
+        "fiware": "https://uri.fiware.org/ns/data-models#",
+        "schema": "https://schema.org/",
+        "Book": "schema:Book",
+        "Library": "schema:Library",
+        "Person": "schema:Person",
+        "abstract": "schema:abstract",
+        "address": "schema:address",
+        "author": "schema:author",
+        "avaibleSeats": "schema:value",
+        "datePublished": "schema:datePublished",
+        "department": "schema:department",
+        "email": "schema:email",
+        "familyName": "schema:familyName",
+        "genre": "schema:genre",
+        "givenName": "schema:givenName",
+        "isAvailable": "schema:value",
+        "isbn": "schema:isbn",
+        "legalName": "schema:legalName",
+        "memberOf": "schema:memberOf",
+        "name": "schema:name",
+        "openingHours": "schema:openingHours",
+        "publisher": "schema:publisher"
+    }
+}
