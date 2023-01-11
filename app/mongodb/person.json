@@ -1,0 +1,17 @@
+{
+  "_id": {
+    "$oid": "63bd4fb11e32a969e45af1d8"
+  },
+  "name": "root",
+  "surname": "root",
+  "email": "root@root",
+  "password": "root",
+  "courseCode": "Medicina",
+  "preferences": [
+    "Letteratura",
+    "Geografia",
+    "Storia",
+    "Ingegneria",
+    "Horror"
+  ]
+}

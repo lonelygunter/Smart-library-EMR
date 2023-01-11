@@ -1,0 +1,18 @@
+{
+  "_id": {
+    "$oid": "63bd389a1e32a969e45af1cc"
+  },
+  "name": [
+    "Letteratura",
+    "Horror",
+    "Storia",
+    "Thriller",
+    "Geografia",
+    "Informatica",
+    "Medicina",
+    "Matematica",
+    "Architettura",
+    "Ingegneria",
+    "Design"
+  ]
+}

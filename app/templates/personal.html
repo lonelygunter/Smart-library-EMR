@@ -79,10 +79,10 @@
 
           <!-- Logout -->
           <div class="row mt-2 ml-2 mr-2">
-            <h4 class="p-2 mx-auto"> Hi {{record[0][1]}} {{record[0][2]}}</h4>
+            <h4 class="p-2 mx-auto"> Hi {{record[0].get("name")}} {{record[0].get("surname")}}</h4>
             <a href="/logout" class="list-group-item list-group-item-primary">Logout</a>
           </div>
-          <small id="" class="form-text text-muted p-2">Faculty: {{record[0][5]}}</small>
+          <small id="" class="form-text text-muted p-2">Faculty: {{record[0].get("courseCode")}}</small>
 
         <div class="row mt-2 ml-2 mr-2" style="background-color: #dcdcdc;">
             <div class="col-sm-6 p-4">
@@ -91,7 +91,7 @@
                 <div class="list-group">
 
                     {% for i in recordMyInterest%}
-                    <a href="/{{record[0][0]}}/{{i[3]}}/removepref" class="list-group-item list-group-item-danger">{{i[3]}}</a>
+                    <a href="/{{record[0].get('name')}}/{{i}}/removepref" class="list-group-item list-group-item-danger">{{i}}</a>
                     {% endfor %}
                     
                 </div>
@@ -102,7 +102,7 @@
                 <p>Click to add interest.</p>
                 <div class="list-group">
                     {% for i in allCategory%}
-                    <a href="/{{record[0][0]}}/{{i[1]}}/addpref" class="list-group-item list-group-item-success">{{i[1]}}</a>
+                    <a href="/{{record[0].get('name')}}/{{i}}/addpref" class="list-group-item list-group-item-success">{{i}}</a>
                     {% endfor %}
                 </div>
             </div>
@@ -114,16 +114,16 @@
         {% for single in bookCat%}
         <div class="row mt-2 ml-2 mr-2" style="background-color: #dcdcdc;">
             <div class="col-sm-2">
-                <img src="/{{single[5]}}" alt="..." class="img-thumbnail" style="width: 100%;">
+                <img src="/{{single.get('pathimg')}}" alt="..." class="img-thumbnail" style="width: 100%;">
             </div>
             <div class="col-sm-10">
                 <div class="p-4">
-                    <h4>Title: {{single[1]}}</h4>
-                    <h6>ISBN: {{single[0]}}</h6>
-                    <h6>Autor: {{single[3]}}</h6>
-                    <p>Description: {{single[2]}}</p>
-                    <button type="button" class="btn btn-info">{{single[4]}}</button>
-                    {% if single[6] == 0 %}
+                    <h4>Title: {{single.get("title")}}</h4>
+                    <h6>ISBN: {{single.get("isbn")}}</h6>
+                    <h6>Autor: {{single.get("autor")}}</h6>
+                    <p>Description: {{single.get("description")}}</p>
+                    <button type="button" class="btn btn-info">{{single.get("category")}}</button>
+                    {% if single.get('available') == 0 %}
                       <p class="mt-4">Now available</p>
                     {% else%}
                       <p class="mt-4">Now not available</p>

@@ -1,56 +1,21 @@
 #doc: https://www.youtube.com/watch?v=hDNxHiybF8Q&t=784s&ab_channel=PitoneProgrammatore
 #doc mysql: https://pynative.com/python-mysql-database-connection/
 
+from mongo import *
 from flask import *
-import random
-import mysql.connector
 
 app = Flask(__name__)
 
 email = " "
 passw = " "
 
-#connection to db
-def db_connection():
-    connection = mysql.connector.connect(host='localhost',
-                                         database='smartlibrary',
-                                         user='root',
-                                         password='rootroot')
-    if connection.is_connected():
-        db_Info = connection.get_server_info()
-        print("Connected to MySQL Server version ", db_Info)
-        return connection
-
-#select query
-def select_query(connection, query):
-    cursor = connection.cursor()
-    cursor.execute(query)
-    record = cursor.fetchall()
-    cursor.close()
-    return record
-
-#delete query
-def delete_query(connection,query):
-    cursor = connection.cursor()
-    cursor.execute(query)
-    connection.commit()
-    cursor.close()
-
-#insert query
-def insert_query(connection,query):
-    cursor = connection.cursor()
-    cursor.execute(query)
-    connection.commit()
-    cursor.close()
-
 #main page
 @app.route("/") #http://127.0.0.1:5000
 def index():
-    sittingPerson = str(random.randint(0,100))
-    connection = db_connection()
-    record = select_query(connection,"SELECT books.isbn,books.title,books.description,books.autor,category.name,books.pathimg,books.available FROM smartlibrary.books,smartlibrary.category WHERE (books.idcategory = category.idcategory);")
-    connection.close()
-    return render_template("index.html", random=sittingPerson, record=record)
+    libraryCollection = mongo_connection_library()
+    record = libraryCollection.find_one({},{"_id":0, "seats":1})
+    seats = record.get("seats")
+    return render_template("index.html", random=seats)
 
 #login page
 @app.route("/personal.html", methods=["POST","GET"])
@@ -61,24 +26,38 @@ def login_page():
         if ((email == " " and passw == " ") or (email == None and passw == None)):
             email = request.form.get('email')
             passw = request.form.get('passw')
-        connection = db_connection()
-        record = select_query(connection,"SELECT * FROM smartlibrary.person WHERE (email = '" + email + "') AND (password = '" + passw + "');")
-        recordMyInterest = select_query(connection,"SELECT person.id,category.idcategory,person.name,category.name FROM smartlibrary.interest, smartlibrary.category, smartlibrary.person WHERE ('"+ str(record[0][0]) + "' = interest.personID) AND (category.idcategory = interest.categoryID) AND (person.id = "+ str(record[0][0]) +");")
-        allCategory = select_query(connection,"SELECT * FROM smartlibrary.category;")
 
+        personCollection = mongo_connection_person()
+        record = personCollection.find({"email":email, "password":passw},{"_id":0, "name":1, "surname":1, "email":1, "password":1, "courseCode":1, "preferences":1 })
+        recordMyInterest = []
+        recordPerson = []
+        for rec in record:
+            recordMyInterest = rec.get("preferences")
+            recordPerson.append(rec)
+        print(recordPerson)
+        
+        categoryCollection = mongo_connection_category()
+        resultcategory = categoryCollection.find({},{"_id":0, "name":1 })
+        resultListcategory = []
+        for res in resultcategory:
+            resultListcategory.append(res)
+            allCategory = res.get("name")
+
+        booksCollection = mongo_connection_books()
         bookCat = []
-        for r in recordMyInterest:
-            bookCatTMP = select_query(connection,"SELECT * FROM (SELECT books.isbn,books.title,books.description,books.autor,category.name,books.pathimg,books.available FROM smartlibrary.books,smartlibrary.category WHERE (books.idcategory = category.idcategory)) myTable WHERE (myTable.name = '" + r[3] +"');")
-            bookCat = bookCat + bookCatTMP
-        connection.close()
+        for cat in recordMyInterest:
+            resultbooks = booksCollection.find({"category":cat},{"_id":0, "isbn":1, "title":1, "description":1, "autor":1, "pathimg":1, "available":1, "category":1 })
+            for res in resultbooks:
+                bookCat.append(res)
+
     except:
         email = " "
         passw = " "
-        record = []
+        recordPerson = []
         recordMyInterest = []
         allCategory = []
         bookCat = []
-    return render_template("personal.html",record=record,lenrecord=len(record), recordMyInterest=recordMyInterest, allCategory=allCategory, bookCat=bookCat)
+    return render_template("personal.html",record=recordPerson,lenrecord=len(recordPerson), recordMyInterest=recordMyInterest, allCategory=allCategory, bookCat=bookCat)
 
 #logout
 @app.route("/logout")
@@ -90,29 +69,41 @@ def logout():
     return redirect("/personal.html")
     
 #delete preferences
-@app.route("/<int:id>/<string:cat>/removepref", methods=["GET"])
+@app.route("/<string:id>/<string:cat>/removepref", methods=["GET"])
 def remove_pref(id,cat):
-    connection = db_connection()
-    record = select_query(connection,"SELECT interest.personID,category.name,category.idcategory FROM smartlibrary.interest, smartlibrary.category WHERE (interest.personID = '" + str(id) + "') AND (category.name = '" + cat + "') GROUP BY category.idcategory;")
-    print(record)
-    check = select_query(connection,"SELECT interest.personID, interest.categoryID FROM smartlibrary.interest WHERE (interest.personID = '"+ str(id) +"')")
-    print(check)
-    if (len(check) != 1):
-        delete_query(connection,"DELETE FROM smartlibrary.interest WHERE (interest.personID = '" + str(record[0][0]) + "') AND (interest.categoryID = '" + str(record[0][2]) + "');")
+    personCollection = mongo_connection_person()
+    record = personCollection.find({"email":email, "password":passw},{"_id":0, "name":1, "surname":1, "email":1, "password":1, "courseCode":1, "preferences":1 })
+    recordMyInterest = []
+    recordPerson = []
+    for rec in record:
+        recordMyInterest = rec.get("preferences")
+        recordPerson.append(rec)
+
+    if (len(recordMyInterest) > 1):
+        recordMyInterest.remove(cat)
+        myquery = {"email": email, "password": passw}
+        newvalues = { "$set": { "preferences": recordMyInterest } }
+        personCollection.update_one(myquery, newvalues)
+
     return redirect("/personal.html")
 
 #add preferences
-@app.route("/<int:id>/<string:cat>/addpref", methods=["GET"])
+@app.route("/<string:id>/<string:cat>/addpref", methods=["GET"])
 def add_pref(id,cat):
-    connection = db_connection()
-    record = select_query(connection,"SELECT interest.personID,category.name,category.idcategory FROM smartlibrary.interest, smartlibrary.category WHERE (interest.personID = '" + str(id) + "') AND (category.name = '" + cat + "') GROUP BY category.idcategory;")
-    recordMyInterest = select_query(connection,"SELECT person.id,category.idcategory,person.name,category.name FROM smartlibrary.interest, smartlibrary.category, smartlibrary.person WHERE ('"+ str(record[0][0]) + "' = interest.personID) AND (category.idcategory = interest.categoryID) AND (person.id = "+ str(record[0][0]) +");")
-    tmp = 0
-    for i in recordMyInterest:
-        if(i[3] == record[0][1]):
-            tmp = 1 #elemento già presente
-    if tmp == 0:
-        insert_query(connection, "INSERT INTO smartlibrary.interest (personID,categoryID) VALUES ('" + str(id) + "','" + str(record[0][2]) + "');")
+    personCollection = mongo_connection_person()
+    record = personCollection.find({"email":email, "password":passw},{"_id":0, "name":1, "surname":1, "email":1, "password":1, "courseCode":1, "preferences":1 })
+    recordMyInterest = []
+    recordPerson = []
+    for rec in record:
+        recordMyInterest = rec.get("preferences")
+        recordPerson.append(rec)
+
+    if (cat not in recordMyInterest):
+        recordMyInterest.append(cat)
+        myquery = {"email": email, "password": passw}
+        newvalues = { "$set": { "preferences": recordMyInterest } }
+        personCollection.update_one(myquery, newvalues)
+
     return redirect("/personal.html")
     
 #register page
@@ -123,68 +114,134 @@ def register_page():
 #register
 @app.route("/register.html/register", methods=["POST"])
 def register():
-    connection = db_connection()
+    personCollection = mongo_connection_person()
+
     email1 = request.form.get('email')
     passw1 = request.form.get('passw')
     name = request.form.get('name')
     surname = request.form.get('surname')
     select = request.form.get('select')
-    insert_query(connection, "INSERT INTO smartlibrary.person (name,surname,email,password,codiceCorso) VALUES ('" + str(name) + "','" + str(surname) + "','" + str(email1) + "','" + str(passw1) + "','" + str(select) + "');")
-    id = select_query(connection,"SELECT person.id FROM smartlibrary.person WHERE (person.name = '"+ str(name) +"') AND (person.surname = '"+ str(surname) +"') AND (person.password = '"+ str(passw1) +"') AND (person.email = '"+ str(email1) +"');")
-    idCat = select_query(connection,"SELECT category.idcategory FROM smartlibrary.category WHERE (category.name = '"+ str(select) +"');")
-    insert_query(connection,"INSERT INTO smartlibrary.interest (personID,categoryID) VALUES ('" + str(id[0][0]) + "','" + str(idCat[0][0]) + "');")
+    user = {"name":name, "surname":surname, "email":email1, "password": passw1, "courseCode": select, "preferences": [select]}
+    personCollection.insert_one(user)
+
+    global email
+    global passw
+    email = " "
+    passw = " "
+
     return redirect("/")
 
 
 #check available books
 @app.route("/books_available")
 def books_available():
-    connection = db_connection()
-    record = select_query(connection,"SELECT books.isbn,books.title,books.description,books.autor,category.name,books.pathimg,books.available FROM smartlibrary.books,smartlibrary.category WHERE (books.idcategory = category.idcategory) AND (books.available = 0);")
-    recordCategory = select_query(connection,"SELECT name FROM smartlibrary.category;")
-    connection.close()
-    return render_template("books.html",record=record, recordCategory=recordCategory)
+    booksCollection = mongo_connection_books()
+
+    resultbooks = booksCollection.find({"available":0},{"_id":0, "isbn":1, "title":1, "description":1, "autor":1, "pathimg":1, "available":1, "category":1 })
+    resultListbooks = []
+    for res in resultbooks:
+        resultListbooks.append(res)
+
+    categoryCollection = mongo_connection_category()
+    resultcategory = categoryCollection.find({},{"_id":0, "name":1 })
+    resultListcategory = []
+    for res in resultcategory:
+        resultListcategory.append(res)
+        category = res.get("name")
+    
+    return render_template("books.html",resultBooks=resultListbooks, resultCategory=category)
 
 #check not available books
 @app.route("/books_notavailable")
 def books_notavailable():
-    connection = db_connection()
-    record = select_query(connection,"SELECT books.isbn,books.title,books.description,books.autor,category.name,books.pathimg,books.available FROM smartlibrary.books,smartlibrary.category WHERE (books.idcategory = category.idcategory) AND (books.available = 1);")
-    recordCategory = select_query(connection,"SELECT name FROM smartlibrary.category;")
-    connection.close()
-    return render_template("books.html",record=record, recordCategory=recordCategory)
+
+    booksCollection = mongo_connection_books()
+
+    resultbooks = booksCollection.find({"available":1},{"_id":0, "isbn":1, "title":1, "description":1, "autor":1, "pathimg":1, "available":1, "category":1 })
+    resultListbooks = []
+    for res in resultbooks:
+        resultListbooks.append(res)
+
+    categoryCollection = mongo_connection_category()
+    resultcategory = categoryCollection.find({},{"_id":0, "name":1 })
+    resultListcategory = []
+    for res in resultcategory:
+        resultListcategory.append(res)
+        category = res.get("name")
+
+    return render_template("books.html",resultBooks=resultListbooks, resultCategory=category)
 
 #books page
 @app.route("/books.html")
 def books():
-    connection = db_connection()
-    record = select_query(connection,"SELECT books.isbn,books.title,books.description,books.autor,category.name,books.pathimg,books.available FROM smartlibrary.books,smartlibrary.category WHERE (books.idcategory = category.idcategory);")
-    recordCategory = select_query(connection,"SELECT name FROM smartlibrary.category;")
-    connection.close()
-    return render_template("books.html",record=record, recordCategory=recordCategory)
+
+    booksCollection = mongo_connection_books()
+
+    resultbooks = booksCollection.find({},{"_id":0, "isbn":1, "title":1, "description":1, "autor":1, "pathimg":1, "available":1, "category":1 })
+    resultListbooks = []
+    for res in resultbooks:
+        resultListbooks.append(res)
+
+    categoryCollection = mongo_connection_category()
+    resultcategory = categoryCollection.find({},{"_id":0, "name":1 })
+    resultListcategory = []
+    for res in resultcategory:
+        resultListcategory.append(res)
+        category = res.get("name")
+
+    return render_template("books.html",resultBooks=resultListbooks, resultCategory=category)
 
 #search books
 @app.route("/search", methods=["POST"])
 def search():
     search = request.form.get('src_title')
-    connection = db_connection()
-    record = select_query(connection,"SELECT * FROM (SELECT books.isbn,books.title,books.description,books.autor,category.name,books.pathimg,books.available FROM smartlibrary.books,smartlibrary.category WHERE (books.idcategory = category.idcategory)) myTable WHERE (myTable.title = '" + search +"');")
-    if (len(record) == 0):
-        record = select_query(connection,"SELECT * FROM (SELECT books.isbn,books.title,books.description,books.autor,category.name,books.pathimg,books.available FROM smartlibrary.books,smartlibrary.category WHERE (books.idcategory = category.idcategory)) myTable WHERE (myTable.autor = '" + search +"');")
-    if (len(record) == 0):
-        record = select_query(connection,"SELECT * FROM (SELECT books.isbn,books.title,books.description,books.autor,category.name,books.pathimg,books.available FROM smartlibrary.books,smartlibrary.category WHERE (books.idcategory = category.idcategory)) myTable WHERE (myTable.isbn = '" + search +"');")
-    recordCategory = select_query(connection,"SELECT name FROM smartlibrary.category;")
-    connection.close()
-    return render_template("books.html",record=record, recordCategory=recordCategory)
+
+    booksCollection = mongo_connection_books()
+
+    resultbooks = booksCollection.find({"title":search},{"_id":0, "isbn":1, "title":1, "description":1, "autor":1, "pathimg":1, "available":1, "category":1 })
+    resultListbooks = []
+    for res in resultbooks:
+        resultListbooks.append(res)
+
+    if len(resultListbooks) == 0:
+        resultbooks = booksCollection.find({"autor":search},{"_id":0, "isbn":1, "title":1, "description":1, "autor":1, "pathimg":1, "available":1, "category":1 })
+        resultListbooks = []
+        for res in resultbooks:
+            resultListbooks.append(res)
+    if len(resultListbooks) == 0:
+        resultbooks = booksCollection.find({"isbn":search},{"_id":0, "isbn":1, "title":1, "description":1, "autor":1, "pathimg":1, "available":1, "category":1 })
+        resultListbooks = []
+        for res in resultbooks:
+            resultListbooks.append(res)
+
+    categoryCollection = mongo_connection_category()
+    resultcategory = categoryCollection.find({},{"_id":0, "name":1 })
+    resultListcategory = []
+    for res in resultcategory:
+        resultListcategory.append(res)
+        category = res.get("name")
+
+    return render_template("books.html",resultBooks=resultListbooks, resultCategory=category)
     
 #libri filtrati per categorie
 @app.route("/<string:cat>/category")
 def category(cat):
-    connection = db_connection()
-    record = select_query(connection,"SELECT * FROM (SELECT books.isbn,books.title,books.description,books.autor,category.name,books.pathimg,books.available FROM smartlibrary.books,smartlibrary.category WHERE (books.idcategory = category.idcategory)) myTable WHERE (myTable.name = '" + cat +"');")
-    recordCategory = select_query(connection,"SELECT name FROM smartlibrary.category;")
-    connection.close()
-    return render_template("books.html",record=record, recordCategory=recordCategory)
+
+    booksCollection = mongo_connection_books()
+
+    resultbooks = booksCollection.find({"category":cat},{"_id":0, "isbn":1, "title":1, "description":1, "autor":1, "pathimg":1, "available":1, "category":1 })
+    resultListbooks = []
+    for res in resultbooks:
+        resultListbooks.append(res)
+
+    categoryCollection = mongo_connection_category()
+    resultcategory = categoryCollection.find({},{"_id":0, "name":1 })
+    resultListcategory = []
+    for res in resultcategory:
+        resultListcategory.append(res)
+        category = res.get("name")
+
+    return render_template("books.html",resultBooks=resultListbooks, resultCategory=category)
 
 #sistema il problema del concatenamento dei path per le categorie
 @app.route("/<string:cat1>/<string:cat2>/category")
@@ -198,3 +255,16 @@ def control_category(cat1,cat2):
 @app.route("/nav.html")
 def nav():
     return render_template("nav.html")
+
+
+# ------- test -------------
+
+# MONGO: https://www.youtube.com/watch?v=agCkXvBQirA
+@app.route("/test")
+def test():
+    client = MongoClient("mongodb://localhost:27017")
+    db = client.bigdata
+    personCollection = db.person
+    result = personCollection.find({},{"_id":0, "name":1, "surname":1, "email":1, "password":1, "courseCode":1, "preferences":1 })
+    return render_template("nav.html")
+    

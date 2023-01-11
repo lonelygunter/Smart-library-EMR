@@ -62,29 +62,31 @@
             </form>
         </div>
         
+  
         <!-- BUTTON CATEGORY -->
         <div class="row mt-2 ml-2 mr-2 mb-4">
-            {% for single in recordCategory%}
-            <form action="{{single[0]}}/category" method="GET">
-                <button type="submit" class="btn btn-info ml-1">{{single[0]}}</button>
+            {% for single in resultCategory%}
+            <form action="{{single}}/category" method="GET">
+                <button type="submit" class="btn btn-info ml-1">{{single}}</button>
             </form>
             {% endfor %}
         </div>
+        
 
         <!-- Books -->
-        {% for single in record%}
+        {% for single in resultBooks %}
         <div class="row mt-2 ml-2 mr-2" style="background-color: #dcdcdc;">
             <div class="col-sm-2">
-                <img src="/{{single[5]}}" alt="..." class="img-thumbnail" style="width: 100%;">
+                <img src="/{{single.get('pathimg')}}" alt="..." class="img-thumbnail" style="width: 100%;">
             </div>
             <div class="col-sm-10">
                 <div class="p-4">
-                    <h4>Title: {{single[1]}}</h4>
-                    <h6>ISBN: {{single[0]}}</h6>
-                    <h6>Autor: {{single[3]}}</h6>
-                    <p>Description: {{single[2]}}</p>
-                    <button type="button" class="btn btn-info">{{single[4]}}</button>
-                    {% if single[6] == 0 %}
+                    <h4>Title: {{single['title']}}</h4>
+                    <h6>ISBN: {{single.get('isbn')}}</h6>
+                    <h6>Autor: {{single.get('autor')}}</h6>
+                    <p>Description: {{single.get('description')}}</p>
+                    <button type="button" class="btn btn-info">{{single.get('category')}}</button>
+                    {% if single.get('available') == 0 %}
                       <p class="mt-4">Now available</p>
                     {% else%}
                       <p class="mt-4">Now not available</p>
