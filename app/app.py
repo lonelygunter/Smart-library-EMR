@@ -240,7 +240,6 @@ def category(cat):
     for res in resultcategory:
         resultListcategory.append(res)
         category = res.get("name")
-
     return render_template("books.html",resultBooks=resultListbooks, resultCategory=category)
 
 #sistema il problema del concatenamento dei path per le categorie
@@ -248,6 +247,78 @@ def category(cat):
 def control_category(cat1,cat2):
     return redirect("/" + cat2 + "/category")
 
+#staff
+@app.route("/staff.html", methods=["POST","GET"])
+def staff():
+    user = request.form.get('user')
+    passw = request.form.get('passw')
+    if (user == "staff" and passw == "staff"):
+        categoryCollection = mongo_connection_category()
+        resultcategory = categoryCollection.find({},{"_id":0, "name":1 })
+        resultListcategory = []
+        for res in resultcategory:
+            resultListcategory.append(res)
+            category = res.get("name")
+        return render_template("staffpage.html",resultCategory=category)
+    return render_template("staff.html")
+
+#insert one book
+@app.route("/insert_book", methods=["POST"])
+def insert_book():
+
+    if(request.form.get('action') == "savebook"):
+        isbn = request.form.get('ISBN')
+        title = request.form.get('Title')
+        description = request.form.get('Description')
+        autor = request.form.get('Autor')
+        category = request.form.get('select')
+
+        booksCollection = mongo_connection_books()
+        book = {"isbn":isbn, "title":title, "description":description, "autor": autor, "pathimg":"static/standardbook.jpeg", "available":0, "category":category}
+        booksCollection.insert_one(book)
+    else:
+        isbn = request.form.get('ISBN')
+        booksCollection = mongo_connection_books()
+        booksCollection.delete_one({"isbn":str(isbn)})
+    return redirect("/books.html")
+
+#insert one category
+@app.route("/insert_category", methods=["POST"])
+def insert_category():
+    
+    if(request.form.get('action') == "savecat"):
+        categoryName = request.form.get('CategoryName')
+
+        categoryCollection = mongo_connection_category()
+        resultcategory = categoryCollection.find({},{"_id":0, "name":1 })
+        resultListcategory = []
+        for res in resultcategory:
+            resultListcategory.append(res)
+            category = res.get("name")
+        
+        resultcategoryID = categoryCollection.find_one({},{"_id":1, "name":0 })
+
+        if (categoryName not in category):
+            myquery = {"_id": resultcategoryID.get("_id")}
+            category.append(categoryName)
+            print(category)
+            newvalues = { "$set": { "name": category } }
+            categoryCollection.update_one(myquery, newvalues)
+    else:
+        categoryName = request.form.get('CategoryName')
+        categoryCollection = mongo_connection_category()
+        resultcategory = categoryCollection.find({},{"_id":0, "name":1 })
+        resultListcategory = []
+        for res in resultcategory:
+            resultListcategory.append(res)
+            category = res.get("name")
+        category.remove(categoryName)
+        resultcategoryID = categoryCollection.find_one({},{"_id":1, "name":0 })
+        myquery = {"_id": resultcategoryID.get("_id")}
+        newvalues = { "$set": { "name": category } }
+        categoryCollection.update_one(myquery, newvalues)
+        
+    return redirect("/books.html")
 
 # ------- html block ---------
 
