@@ -4,19 +4,29 @@ curl -iX POST 'http://localhost:1026/ngsi-ld/v1/entities/' -H 'Content-Type: app
 
     email: {
         type: Property,
-        value: roberto.vadacca@studenti.unisalento.it
+        value: root@root
     },
-    familyName: {
+    surname: {
         type: Property,
-        value: Vadacca
+        value: root
     },
-    givenName: {
+    name: {
         type: Property,
-        value: Roberto
+        value: root
     },
-    memberOf: {
+    courseCode: {
         type: Property,
-        value: Ingegneria Informatica
+        value: Medicina
+    },
+    "preferences": {
+        type: Property,
+        value: [
+                "Letteratura",
+                "Geografia",
+                "Storia",
+                "Ingegneria",
+                "Horror"
+                ]
     },
     @context: http://context/ngsi-context.jsonld
 }'
