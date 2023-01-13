@@ -1,26 +1,26 @@
 curl -iX POST 'http://localhost:1026/ngsi-ld/v1/entities/' -H 'Content-Type: application/ld+json' --data-raw '{
-    id: urn:ngsi-ld:Person:person001,
-    type: Person,
+    "id": "urn:ngsi-ld:Person:person001",
+    "type": "Person",
 
-    email: {
-        type: Property,
-        value: root@root
+    "email": {
+        "type": "Property",
+        "value": "root@root"
     },
-    surname: {
-        type: Property,
-        value: root
+    "surname": {
+        "type": "Property",
+        "value": "root"
     },
-    name: {
-        type: Property,
-        value: root
+    "name": {
+        "type": "Property",
+        "value": "root"
     },
-    courseCode: {
-        type: Property,
-        value: Medicina
+    "courseCode": {
+        "type": "Property",
+        "value": "Medicina"
     },
     "preferences": {
-        type: Property,
-        value: [
+        "type": "Property",
+        "value": [
                 "Letteratura",
                 "Geografia",
                 "Storia",
@@ -28,6 +28,6 @@ curl -iX POST 'http://localhost:1026/ngsi-ld/v1/entities/' -H 'Content-Type: app
                 "Horror"
                 ]
     },
-    @context: http://context/ngsi-context.jsonld
+    "@context": "http://context/ngsi-context.jsonld"
 }'
 
