@@ -18,6 +18,10 @@ curl -iX POST 'http://localhost:1026/ngsi-ld/v1/entities/' -H 'Content-Type: app
         "type": "Property",
         "value": "Medicina"
     },
+    "password": {
+        "type": "Property",
+        "value": "root"
+    },
     "preferences": {
         "type": "Property",
         "value": [
