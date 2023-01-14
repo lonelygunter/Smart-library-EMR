@@ -9,7 +9,6 @@
         "xsd": "http://www.w3.org/2001/XMLSchema#",
         "3g": "fiware:3g",
         "Book": "schema:Book",
-        "Category": "schema:Category",
         "Device": "fiware:Device",
         "Library": "schema:Library",
         "Person": "schema:Person",
@@ -33,10 +32,6 @@
         "category": {
             "@id": "fiware:category",
             "@type": "@vocab"
-        },
-        "categoryName": {
-            "@id": "schema:name",
-            "@type": "xsd:string"
         },
         "configuration": {
             "@id": "fiware:configuration",
@@ -260,25 +255,6 @@
                 {
                     "@language": "en",
                     "@value": "Library"
-                }
-            ],
-            "rdfs:subClassOf": {
-                "@id": "schema:Thing"
-            }
-        },
-        {
-            "@id": "schema:Category",
-            "@type": "rdfs:Class",
-            "rdfs:comment": [
-                {
-                    "@language": "en",
-                    "@value": ""
-                }
-            ],
-            "rdfs:label": [
-                {
-                    "@language": "en",
-                    "@value": "Category"
                 }
             ],
             "rdfs:subClassOf": {
@@ -525,22 +501,6 @@
                 {
                     "@language": "en",
                     "@value": "avaibleSeats"
-                }
-            ]
-        },
-        {
-            "@id": "schema:categoryName",
-            "@type": "ngsi-ld:Property",
-            "rdfs:comment": [
-                {
-                    "@language": "en",
-                    "@value": "category name."
-                }
-            ],
-            "rdfs:label": [
-                {
-                    "@language": "en",
-                    "@value": "categoryName"
                 }
             ]
         },
