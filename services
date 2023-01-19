@@ -132,13 +132,7 @@ waitForMongo () {
 }
 
 loadData () {
-	echo ""
-	waitForUserContext
-	docker run --rm -v $(pwd)/import-data:/import-data \
-		--network fiware_default \
-		-e CONTEXT_BROKER=${CONTEXT_BROKER} \
-		-e TUTORIAL_DATA_MODELS_CONTEXT=${CONTEXT} \
-		--entrypoint /bin/ash curlimages/curl import-data
+	echo "nessun dato da caricare, questo messaggio non e' un errore"
 }
 
 addDatabaseIndex () {
