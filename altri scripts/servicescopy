@@ -131,6 +131,24 @@ waitForMongo () {
 	done
 }
 
+loadData () {
+	export CONTEXT_BROKER="$1"
+	waitForUserContext
+	docker run --rm -v $(pwd)/import-data:/import-data \
+		--network fiware_default \
+		-e CONTEXT_BROKER=${CONTEXT_BROKER} \
+		-e TUTORIAL_DATA_MODELS_CONTEXT=${CONTEXT} \
+		--entrypoint /bin/ash curlimages/curl import-data
+	addIoTDatabaseIndex
+	waitForIoTAgent
+	docker run --rm -v $(pwd)/provision-devices:/provision-devices \
+		--network fiware_default \
+		-e CONTEXT_BROKER=${CONTEXT_BROKER} \
+		-e TUTORIAL_DATA_MODELS_CONTEXT=${CONTEXT} \
+		--entrypoint /bin/ash curlimages/curl provision-devices
+	echo ""
+}
+
 stoppingContainers () {
 	CONTAINERS=$(docker ps --filter "label=org.fiware=tutorial" -aq)
 	if [[ -n $CONTAINERS ]]; then 
@@ -231,6 +249,7 @@ case "${command}" in
 		waitForMongo
 		addDatabaseIndex
 		waitForOrion
+		loadData orion:1026
 		displayServices
 		echo -e "Now open \033[4mhttp://localhost:3000/app/monitor\033[0m"
 		;;
@@ -248,6 +267,7 @@ case "${command}" in
 		waitForMongo
 		addDatabaseIndex
 		waitForScorpio
+		loadData scorpio:9090
 		displayServices
 		echo -e "Now open \033[4mhttp://localhost:3000/app/monitor\033[0m"
 		;;
@@ -265,6 +285,7 @@ case "${command}" in
 		waitForMongo
 		addDatabaseIndex
 		waitForStellio
+		loadData stellio:1026
 		displayServices
 		echo -e "Now open \033[4mhttp://localhost:3000/app/monitor\033[0m"
 		;;
