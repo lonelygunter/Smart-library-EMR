@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="/static/open-book.png">
+    <title>Smart Library</title>
+
+    <!-- INCLUDE HTML -->
+    <script>
+    function includeHTML() {
+      var z, i, elmnt, file, xhttp;
+      /* Loop through a collection of all HTML elements: */
+      z = document.getElementsByTagName("*");
+      for (i = 0; i < z.length; i++) {
+        elmnt = z[i];
+        /*search for elements with a certain atrribute:*/
+        file = elmnt.getAttribute("w3-include-html");
+        if (file) {
+          /* Make an HTTP request using the attribute value as the file name: */
+          xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4) {
+              if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+              if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+              /* Remove the attribute, and call this function once more: */
+              elmnt.removeAttribute("w3-include-html");
+              includeHTML();
+            }
+          }
+          xhttp.open("GET", file, true);
+          xhttp.send();
+          /* Exit the function: */
+          return;
+        }
+      }
+    }
+    </script>
+
+  </head>
+  <body style="background-color: #eeee;">
+
+    <div w3-include-html="nav.html"></div>
+
+
+    <div class="container-fluid">
+
+        {% if lenrecord == 0 %}
+          <!-- LOGIN -->
+          <div class="row mt-2">
+            <div class="col-sm-12">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Login or Register</h5>
+                  <form action="/personal.html" method="POST">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email address</label>
+                      <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input type="password" class="form-control" id="passw" name="passw" placeholder="Password">
+                      <small id="emailHelp" class="form-text text-muted">We'll never share your password with anyone else.</small>
+                    </div>
+                    <button type="submit" class="btn btn-success">Login</button>
+                    <a class="btn btn-primary" href="/register.html" role="button">Register</a>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+
+          {% if lenrecord != 0 %}
+
+          <!-- Logout -->
+          <div class="row mt-2 ml-2 mr-2">
+            <h4 class="p-2 mx-auto"> Hi {{record[0][0]}} {{record[0][1]}}</h4>
+            <a href="/logout" class="list-group-item list-group-item-primary">Logout</a>
+          </div>
+          <small id="" class="form-text text-muted p-2">Faculty: {{record[0][2]}}</small>
+
+        <div class="row mt-2 ml-2 mr-2" style="background-color: #dcdcdc;">
+            <div class="col-sm-6 p-4">
+                <h5 class=""> Your Interest Now: </h5>
+                <p>Click to remove interest.</p>
+                <div class="list-group">
+
+                    {% for i in recordMyInterest%}
+                    <a href="/{{record[0]}}/{{i}}/removepref" class="list-group-item list-group-item-danger">{{i}}</a>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+
+            <div class="col-sm-6 p-4">
+                <h5 class=""> Add Other Interest: </h5>
+                <p>Click to add interest.</p>
+                <div class="list-group">
+                    {% for i in allCategory%}
+                    <a href="/{{record[0]}}/{{i[0]}}/addpref" class="list-group-item list-group-item-success">{{i[0]}}</a>
+                    {% endfor %}
+                </div>
+            </div>
+
+        <!-- Books -->
+        <div class="row mt-2 ml-2 mr-2">
+            <h4 class="p-2 mx-auto">Books that are relevant to your interests</h4>
+        </div>
+        {% for single in bookCat%}
+          <div class="row mt-2 ml-2 mr-2" style="background-color: #dcdcdc;">
+            <div class="col-sm-2">
+                <img src="/{{single[5]}}" alt="..." class="img-thumbnail" style="width: 100%;">
+            </div>
+            <div class="col-sm-10">
+                <div class="p-4">
+                    <h4>Title: {{single[1]}}</h4>
+                    <h6>ISBN: {{single[0]}}</h6>
+                    <h6>Autor: {{single[3]}}</h6>
+                    <p>Description: {{single[2]}}</p>
+                    <button type="button" class="btn btn-info">{{single[4]}}</button>
+                    {% if single[6] == 0 %}
+                      <p class="mt-4">Now available</p>
+                    {% else%}
+                      <p class="mt-4">Now not available</p>
+                    {% endif %}
+                </div>
+            </div>
+          </div>
+        {% endfor %}
+
+
+          {% endif %}
+        </div>
+
+        
+
+    </div>
+
+    <!-- My JS -->
+    <script>  
+        console.log('{{random}}');
+        document.getElementById("progress").setAttribute("style", 'width: {{random}}%');  
+    </script>  
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- IncludeHTML -->
+    <script>
+      includeHTML();
+    </script>
+
+  </body>
+</html>

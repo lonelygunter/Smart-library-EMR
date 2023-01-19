@@ -1,0 +1,9 @@
+curl -iX POST 'http://localhost:1026/ngsi-ld/v1/entities/' -H 'Content-Type: application/ld+json' --data-raw '{
+    "id": "urn:ngsi-ld:Category:category006",
+    "type": "Category",              
+    "categoryName": {                   
+        "type": "Property",
+        "value": "Horror"
+    },                       
+    "@context": "http://context/ngsi-context.jsonld"
+}'

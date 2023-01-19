@@ -1,0 +1,57 @@
+{
+  "_id": {
+    "id": "urn:ngsi-ld:Person:person002",
+    "type": "https://schema.org/Person",
+    "servicePath": "/"
+  },
+  "attrNames": [
+    "https://schema.org/email",
+    "https://schema.org/familyName",
+    "https://uri.etsi.org/ngsi-ld/name",
+    "https://schema.org/memberOf",
+    "https://schema.org/knowsAbout"
+  ],
+  "attrs": {
+    "https://schema=org/email": {
+      "type": "Property",
+      "creDate": 1673640180.3143768,
+      "modDate": 1673640180.3143768,
+      "value": "ema@ema",
+      "mdNames": []
+    },
+    "https://schema=org/familyName": {
+      "type": "Property",
+      "creDate": 1673640180.3143768,
+      "modDate": 1673640180.3143768,
+      "value": "Mele",
+      "mdNames": []
+    },
+    "https://uri=etsi=org/ngsi-ld/name": {
+      "type": "Property",
+      "creDate": 1673640180.3143768,
+      "modDate": 1673640180.3143768,
+      "value": "Emanuele",
+      "mdNames": []
+    },
+    "https://schema=org/memberOf": {
+      "type": "Property",
+      "creDate": 1673640180.3143768,
+      "modDate": 1673640180.3143768,
+      "value": "Informatica",
+      "mdNames": []
+    },
+    "https://schema=org/knowsAbout": {
+      "type": "Property",
+      "creDate": 1673640180.3143768,
+      "modDate": 1673640180.3143768,
+      "value": [
+        "Letteratura",
+        "Geografia"
+      ],
+      "mdNames": []
+    }
+  },
+  "creDate": 1673640180.3143768,
+  "modDate": 1673640180.3143768,
+  "lastCorrelator": ""
+}

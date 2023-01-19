@@ -1,0 +1,33 @@
+curl -iX POST 'http://localhost:1026/ngsi-ld/v1/entities/' -H 'Content-Type: application/ld+json' --data-raw '{
+    "id": "urn:ngsi-ld:Person:person001",
+    "type": "Person",
+
+    "email": {
+        "type": "Property",
+        "value": "root@root"
+    },
+    "surname": {
+        "type": "Property",
+        "value": "root"
+    },
+    "name": {
+        "type": "Property",
+        "value": "root"
+    },
+    "courseCode": {
+        "type": "Property",
+        "value": "Medicina"
+    },
+    "preferences": {
+        "type": "Property",
+        "value": [
+                "Letteratura",
+                "Geografia",
+                "Storia",
+                "Ingegneria",
+                "Horror"
+                ]
+    },
+    "@context": "http://context/ngsi-context.jsonld"
+}'
+

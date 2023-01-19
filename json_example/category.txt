@@ -1,0 +1,22 @@
+{
+  "_id": {
+    "id": "urn:ngsi-ld:Category:category997",
+    "type": "https://uri.etsi.org/ngsi-ld/default-context/Category",
+    "servicePath": "/"
+  },
+  "attrNames": [
+    "https://uri.etsi.org/ngsi-ld/default-context/categoryName"
+  ],
+  "attrs": {
+    "https://uri=etsi=org/ngsi-ld/default-context/categoryName": {
+      "type": "Property",
+      "creDate": 1673635663.5077872,
+      "modDate": 1673635663.5077872,
+      "value": "Bambini",
+      "mdNames": []
+    }
+  },
+  "creDate": 1673635663.5077872,
+  "modDate": 1673635663.5077872,
+  "lastCorrelator": ""
+}

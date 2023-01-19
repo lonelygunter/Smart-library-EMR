@@ -1,0 +1,22 @@
+{
+  "_id": {
+    "id": "urn:ngsi-ld:Library:library001",
+    "type": "https://schema.org/Library",
+    "servicePath": "/"
+  },
+  "attrNames": [
+    "https://uri.etsi.org/ngsi-ld/default-context/seats"
+  ],
+  "attrs": {
+    "https://uri=etsi=org/ngsi-ld/default-context/seats": {
+      "type": "Property",
+      "creDate": 1673635651.0854478,
+      "modDate": 1673635651.0854478,
+      "value": "30",
+      "mdNames": []
+    }
+  },
+  "creDate": 1673635651.0854478,
+  "modDate": 1673635651.0854478,
+  "lastCorrelator": ""
+}

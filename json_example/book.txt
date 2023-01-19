@@ -1,0 +1,70 @@
+{
+  "_id": {
+    "id": "urn:ngsi-ld:Book:book001",
+    "type": "https://schema.org/Book",
+    "servicePath": "/"
+  },
+  "attrNames": [
+    "https://schema.org/isbn",
+    "https://uri.etsi.org/ngsi-ld/title",
+    "https://uri.etsi.org/ngsi-ld/description",
+    "https://schema.org/author",
+    "https://uri.fiware.org/ns/data-models#category",
+    "https://schema.org/image",
+    "https://schema.org/value"
+  ],
+  "attrs": {
+    "https://schema=org/isbn": {
+      "type": "Property",
+      "creDate": 1673636145.2367196,
+      "modDate": 1673636145.2367196,
+      "value": "978-0133970777",
+      "mdNames": []
+    },
+    "https://uri=etsi=org/ngsi-ld/title": {
+      "type": "Property",
+      "creDate": 1673636145.2367196,
+      "modDate": 1673636145.2367196,
+      "value": "Fundamentals of Database Systems",
+      "mdNames": []
+    },
+    "https://uri=etsi=org/ngsi-ld/description": {
+      "type": "Property",
+      "creDate": 1673636145.2367196,
+      "modDate": 1673636145.2367196,
+      "value": "This book introduces the fundamental concepts necessary for designing, using, and implementing database systems and database applications. Our presentation stresses the fundamentals of database modeling and design, the languages and models provided by the database management systems, and database system implementation techniques. The book is meant to be used as a textbook for a one- or two-semester course in database systems at the junior, senior, or graduate level, and as a reference book. The goal is to provide an in-depth and up-to-date presentation of the most important aspects of database systems and applications, and related technologies. It is assumed that readers are familiar with elementary programming and data-structuring concepts and that they have had some exposure to the basics of computer organization.",
+      "mdNames": []
+    },
+    "https://schema=org/author": {
+      "type": "Property",
+      "creDate": 1673636145.2367196,
+      "modDate": 1673636145.2367196,
+      "value": "Ramez Elmastri",
+      "mdNames": []
+    },
+    "https://uri=fiware=org/ns/data-models#category": {
+      "type": "Property",
+      "creDate": 1673636145.2367196,
+      "modDate": 1673636145.2367196,
+      "value": "Letteratura",
+      "mdNames": []
+    },
+    "https://schema=org/image": {
+      "type": "Property",
+      "creDate": 1673636145.2367196,
+      "modDate": 1673636145.2367196,
+      "value": "static/libro6.jpg",
+      "mdNames": []
+    },
+    "https://schema=org/value": {
+      "type": "Property",
+      "creDate": 1673636145.2367196,
+      "modDate": 1673636145.2367196,
+      "value": "1",
+      "mdNames": []
+    }
+  },
+  "creDate": 1673636145.2367196,
+  "modDate": 1673636145.2367196,
+  "lastCorrelator": ""
+}

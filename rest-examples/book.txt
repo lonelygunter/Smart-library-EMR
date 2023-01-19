@@ -1,0 +1,34 @@
+curl -iX POST 'http://localhost:1026/ngsi-ld/v1/entities/' -H 'Content-Type: application/ld+json' --data-raw '{
+    "id": "urn:ngsi-ld:Book:altrocodiceacaso",
+    "type": "Book",
+
+    "isbn": {
+        "type": "Property",
+        "value": "978-1133970777"
+    },
+    "title": {
+        "type": "Property",
+        "value": "Title3"
+    },
+    "description": {
+        "type": "Property",
+        "value": "This book introduces the fundamental concepts necessary for designing, using, and implementing database systems and database applications. Our presentation stresses the fundamentals of database modeling and design, the languages and models provided by the database management systems, and database system implementation techniques. The book is meant to be used as a textbook for a one- or two-semester course in database systems at the junior, senior, or graduate level, and as a reference book. The goal is to provide an in-depth and up-to-date presentation of the most important aspects of database systems and applications, and related technologies. It is assumed that readers are familiar with elementary programming and data-structuring concepts and that they have had some exposure to the basics of computer organization."
+    },                                                                                                              
+    "author": {
+        "type": "Property",
+        "value": "Armando Elmastri"
+    },                           
+    "category": {                   
+        "type": "Property",
+        "value": "Thriller"
+    },                     
+    "pathimg": {         
+        "type": "Property",
+        "value": "static/libro7.jpg"
+    },                                             
+    "available": {                             
+        "type": "Property",
+        "value": "0"
+    },    
+    "@context": "http://context/ngsi-context.jsonld"
+}'
