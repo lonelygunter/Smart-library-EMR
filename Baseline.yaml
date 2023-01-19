@@ -1,22 +1,22 @@
---- 
+main--- 
 components: 
   schemas: 
 
     # This is a defintion of a person.
     Person:
-      $ref: "https://raw.githubusercontent.com/lonelygunter/Smart-library-EMR/SmartDataModels/models/models.yaml#/Person"
+      $ref: "https://raw.githubusercontent.com/lonelygunter/Smart-library-EMR/main/models/models.yaml#/Person"
     
     # This is a defintion of a book.
     Book:
-      $ref: "https://raw.githubusercontent.com/lonelygunter/Smart-library-EMR/SmartDataModels/models/models.yaml#/Book"
+      $ref: "https://raw.githubusercontent.com/lonelygunter/Smart-library-EMR/main/models/models.yaml#/Book"
       
     # This is a defintion of a library.
     Library:
-      $ref: "https://raw.githubusercontent.com/lonelygunter/Smart-library-EMR/SmartDataModels/models/models.yaml#/Library"
+      $ref: "https://raw.githubusercontent.com/lonelygunter/Smart-library-EMR/main/models/models.yaml#/Library"
       
     # This is a defintion of a category.
     Category:
-      $ref: "https://raw.githubusercontent.com/lonelygunter/Smart-library-EMR/SmartDataModels/models/models.yaml#/Category"
+      $ref: "https://raw.githubusercontent.com/lonelygunter/Smart-library-EMR/main/models/models.yaml#/Category"
 
     Device: 
       $ref: "https://fiware.github.io/tutorials.NGSI-LD/models/device.yaml#/Device"
