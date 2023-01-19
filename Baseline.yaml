@@ -20,6 +20,13 @@ components:
     Device: 
       $ref: "https://fiware.github.io/tutorials.NGSI-LD/models/device.yaml#/Device"
     
+    # This is the full list of IoT Device Categories
+    DeviceCategory: 
+      $ref: "https://fiware.github.io/tutorials.NGSI-LD/models/saref-terms.yaml#/Categories"
+    # This is a full list of context attributes measurable by devices
+    ControlledProperties: 
+      $ref: "https://fiware.github.io/tutorials.NGSI-LD/models/saref-terms.yaml#/ControlledProperties"
+
     SupportedProtocol: 
       $ref: "https://fiware.github.io/tutorials.NGSI-LD/models/device.yaml#/SupportedProtocol"
 
