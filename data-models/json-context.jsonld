@@ -11,8 +11,12 @@
         "Book": "schema:Book",
         "Category": "schema:Category",
         "Device": "fiware:Device",
+        "HVAC": "https://w3id.org/saref#HVAC",
         "Library": "schema:Library",
         "Person": "schema:Person",
+        "actuator": "https://w3id.org/saref#actuator",
+        "airPollution": "https://w3id.org/saref#airPollution",
+        "atmosphericPressure": "https://w3id.org/saref#atmosphericPressure",
         "author": {
             "@id": "schema:author",
             "@type": "xsd:string"
@@ -38,6 +42,9 @@
             "@id": "schema:name",
             "@type": "xsd:string"
         },
+        "cdom": "https://w3id.org/saref#cdom",
+        "conductance": "https://w3id.org/saref#conductance",
+        "conductivity": "https://w3id.org/saref#conductivity",
         "configuration": {
             "@id": "fiware:configuration",
             "@type": "xsd:string"
@@ -90,6 +97,7 @@
             "@id": "fiware:dateModified",
             "@type": "xs:dateTime"
         },
+        "depth": "https://w3id.org/saref#depth",
         "description": {
             "@id": "ngsi-ld:description",
             "@type": "xsd:string"
@@ -98,30 +106,42 @@
             "@id": "fiware:deviceState",
             "@type": "xsd:string"
         },
+        "eatingActivity": "https://w3id.org/saref#eatingActivity",
         "ec-gsm-iot": "fiware:ec-gsm-iot",
+        "electricityConsumption": "https://w3id.org/saref#electricityConsumption",
         "email": {
             "@id": "schema:email",
             "@type": "xsd:string"
         },
+        "endgun": "https://w3id.org/saref#endgun",
+        "energy": "https://w3id.org/saref#energy",
+        "fillingLevel": "https://w3id.org/saref#fillingLevel",
         "firmwareVersion": {
             "@id": "fiware:firmwareVersion",
             "@type": "xsd:string"
         },
+        "gasConsumption": "https://w3id.org/saref#gasConsumption",
         "grps": "fiware:grps",
         "hardwareVersion": {
             "@id": "fiware:hardwareVersion",
             "@type": "xsd:string"
         },
+        "heading": "https://w3id.org/saref#heading",
         "http": "fiware:http",
+        "humidity": "https://w3id.org/saref#humidity",
+        "implement": "https://w3id.org/saref#implement",
         "ipAddress": {
             "@id": "fiware:ipAddress",
             "@type": "xsd:string"
         },
+        "irrSection": "https://w3id.org/saref#irrSection",
+        "irrSystem": "https://w3id.org/saref#irrSystem",
         "isbn": {
             "@id": "schema:isbn",
             "@type": "xsd:string"
         },
-        "location": "ngsi-ld:location",
+        "light": "https://w3id.org/saref#light",
+        "location": "https://w3id.org/saref#location",
         "lora": "fiware:lora",
         "lte-m": "fiware:lte-m",
         "lwm2m": "fiware:lwm2m",
@@ -133,17 +153,26 @@
             "@id": "fiware:mcc",
             "@type": "xsd:string"
         },
+        "meter": "https://w3id.org/saref#meter",
+        "milking": "https://w3id.org/saref#milking",
         "mnc": {
             "@id": "fiware:mnc",
             "@type": "xsd:string"
         },
+        "motion": "https://w3id.org/saref#motion",
+        "movementActivity": "https://w3id.org/saref#movementActivity",
         "mqtt": "fiware:mqtt",
+        "multimedia": "https://w3id.org/saref#multimedia",
         "name": {
             "@id": "ngsi-ld:name",
             "@type": "xsd:string"
         },
         "nb-iot": "fiware:nb-iot",
+        "network": "https://w3id.org/saref#network",
+        "noiseLevel": "https://w3id.org/saref#noiseLevel",
+        "occupancy": "https://w3id.org/saref#occupancy",
         "onem2m": "fiware:onem2m",
+        "orp": "https://w3id.org/saref#orp",
         "osVersion": {
             "@id": "fiware:osVersion",
             "@type": "xsd:string"
@@ -152,6 +181,7 @@
             "@id": "fiware:owner",
             "@type": "@id"
         },
+        "pH": "https://w3id.org/saref#pH",
         "password": {
             "@id": "schema:accessCode",
             "@type": "xsd:string"
@@ -160,10 +190,13 @@
             "@id": "schema:image",
             "@type": "xsd:string"
         },
+        "power": "https://w3id.org/saref#power",
+        "precipitation": "https://w3id.org/saref#precipitation",
         "preferences": {
             "@id": "schema:knowsAbout",
             "@type": "xsd:array"
         },
+        "pressure": "https://w3id.org/saref#pressure",
         "provider": {
             "@id": "fiware:provider",
             "@type": "xsd:string"
@@ -176,19 +209,25 @@
             "@id": "fiware:rssi",
             "@type": "xsd:string"
         },
+        "salinity": "https://w3id.org/saref#salinity",
+        "sensor": "https://w3id.org/saref#sensor",
         "serialNumber": {
             "@id": "fiware:serialNumber",
             "@type": "xsd:string"
         },
         "sigfox": "fiware:sigfox",
+        "smoke": "https://w3id.org/saref#smoke",
         "softwareVersion": {
             "@id": "fiware:softwareVersion",
             "@type": "xsd:string"
         },
+        "soilMoisture": "https://w3id.org/saref#soilMoisture",
+        "solarRadiation": "https://w3id.org/saref#solarRadiation",
         "source": {
             "@id": "fiware:source",
             "@type": "xsd:string"
         },
+        "speed": "https://w3id.org/saref#speed",
         "supportedProtocol": {
             "@id": "fiware:supportedProtocol",
             "@type": "@vocab"
@@ -197,16 +236,27 @@
             "@id": "schema:familyName",
             "@type": "xsd:string"
         },
+        "tds": "https://w3id.org/saref#tds",
+        "temperature": "https://w3id.org/saref#temperature",
         "title": {
             "@id": "schema:name",
             "@type": "xsd:string"
         },
+        "trafficFlow": "https://w3id.org/saref#trafficFlow",
+        "tss": "https://w3id.org/saref#tss",
+        "turbidity": "https://w3id.org/saref#turbidity",
         "ul20": "fiware:ul20",
         "value": {
             "@id": "fiware:value",
             "@type": "xsd:string"
         },
-        "websocket": "fiware:websocket"
+        "waterConsumption": "https://w3id.org/saref#waterConsumption",
+        "waterPollution": "https://w3id.org/saref#waterPollution",
+        "weatherConditions": "https://w3id.org/saref#weatherConditions",
+        "websocket": "fiware:websocket",
+        "weight": "https://w3id.org/saref#weight",
+        "windDirection": "https://w3id.org/saref#windDirection",
+        "windSpeed": "https://w3id.org/saref#windSpeed"
     },
     "@graph": [
         {
