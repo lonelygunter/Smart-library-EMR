@@ -1,0 +1,177 @@
+Person:
+  properties:
+    email:
+      description: Email address.
+      type: string
+      x-ngsi:
+        model: 'https://schema.org/Text'
+        type: Property
+        uri: 'https://schema.org/email'
+        uri-prefix: 'https://schema.org/'
+    surname:
+      description: >-
+        Family name. In the U.S., the last name of an Person. This can be used
+        along with givenName instead of the name property.
+      type: string
+      x-ngsi:
+        model: 'https://schema.org/Text'
+        type: Property
+        uri: 'https://schema.org/familyName'
+        uri-prefix: 'https://schema.org/'
+    name:
+      description: >-
+        Given name. In the U.S., the first name of a Person. This can be used
+        along with familyName instead of the name property.
+      type: string
+      x-ngsi:
+        model: 'https://schema.org/Text'
+        type: Property
+        uri: 'https://schema.org/givenName'
+        uri-prefix: 'https://schema.org'
+    courseCode:
+      description: >-
+        An Organization (or ProgramMembership) to which this Person or
+        Organization belongs.
+      type: string
+      x-ngsi:
+        model: 'https://schema.org/Text'
+        type: Property
+        uri: 'https://schema.org/memberOf'
+        uri-prefix: 'https://schema.org/'
+    password:
+      description: >-  
+        Password, PIN, or access code needed for delivery (e.g. from a locker).
+      type: string
+      x-ngsi:
+        model: 'https://schema.org/Text'
+        type: Property
+        uri: 'https://schema.org/accessCode'
+        uri-prefix: 'https://schema.org/'
+    preferences:
+      description: >-
+        preferenze del lettore
+      externalDocs:
+        url: 'https://schema.org/knowsAbout'
+      items:
+        properties:
+          type:
+            type: string
+          values:
+            items:
+              type: string
+            type: array
+        type: object
+      type: array
+      x-ngsi:
+        model: 'https://schema.org/knowsAbout'
+        type: Property
+        uri: 'https://schema.org/knowsAbout'
+     
+  type: object
+  x-ngsi:
+    uri: 'https://schema.org/Person'
+    uri-prefix: 'https://schema.org/'
+
+
+
+Book:
+  properties:
+    isbn:
+      description: The ISBN of the book.
+      type: string
+      x-ngsi:
+        model: 'https://schema.org/Text'
+        type: Property
+        uri: 'https://schema.org/isbn'
+        uri-prefix: 'https://schema.org/'
+    title:
+      description: The name of the item.
+      type: string
+      x-ngsi:
+        model: 'https://schema.org/Text'
+        type: Property
+        uri: 'https://schema.org/name'
+        uri-prefix: 'https://schema.org/'
+    description:
+      description: An abstract is a short description that summarizes a CreativeWork.
+      type: string
+      x-ngsi:
+        model: 'https://schema.org/Text'
+        type: Property
+        uri: 'https://schema.org/abstract'
+        uri-prefix: 'https://schema.org/'
+    author:
+      description: >-
+        The author of this content or rating. Please note that author is special
+        in that HTML 5 provides a special mechanism for indicating authorship
+        via the rel tag. That is equivalent to this and may be used
+        interchangeably.
+      type: string
+      x-ngsi:
+        model: 'https://schema.org/Text'
+        type: Property
+        uri: 'https://schema.org/author'
+        uri-prefix: 'https://schema.org/'
+    category:
+      description: 'Genre of the creative work, broadcast channel or group.'
+      type: string
+      x-ngsi:
+        model: 'https://schema.org/Text'
+        type: Property
+        uri: 'https://schema.org/genre'
+        uri-prefix: 'https://schema.org/'
+    available: 
+      description: boolean flag to check availability
+      type: boolean
+      x-ngsi:
+        model: 'https://schema.org/Boolean'
+        type: Property
+        uri: 'https://schema.org/value'
+        uri-prefix: 'https://schema.org/'
+    pathimg:
+      description: An image of the item. This can be a URL or a fully described ImageObject. 
+      type: string
+      x-ngsi:
+        model: 'https://schema.org/Text'
+        type: Property
+        uri: 'https://schema.org/image'
+        uri-prefix: 'https://schema.org/'
+  type: object
+  x-ngsi:
+    uri: 'https://schema.org/Book'
+    uri-prefix: 'https://schema.org/'
+
+
+
+Library:
+  properties:
+    avaibleSeats:
+      description: the available number of seats in the library
+      format: int32
+      type: integer
+      x-ngsi:
+        model: 'https://schema.org/Integer'
+        type: Property
+        uri: 'https://schema.org/value'
+        uri-prefix: 'https://schema.org/'
+  type: object
+  x-ngsi:
+    uri: 'https://schema.org/Library'
+    uri-prefix: 'https://schema.org/'
+    
+Category:
+  properties:
+    categoryName:
+      description: category name.
+      type: string
+      x-ngsi:
+        model: 'https://schema.org/Text'
+        type: Property
+        uri: 'https://schema.org/name'
+        uri-prefix: 'https://schema.org/'
+  type: object
+  x-ngsi:
+    uri: 'https://schema.org/Thing'
+    uri-prefix: 'https://schema.org/'
+
+
