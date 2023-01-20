@@ -265,6 +265,7 @@ case "${command}" in
 	"start")
 		export $(cat .env | grep "#" -v)
 		./services orion $2
+		./start_demo.sh
 		;;
 	"create")
 		export $(cat .env | grep "#" -v)
