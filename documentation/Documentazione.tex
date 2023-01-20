@@ -1,0 +1,33 @@
+\documentclass{report}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage[T1]{fontenc}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+
+\usepackage{blindtext}
+\usepackage{hyperref}
+
+
+\title{
+    \includegraphics[width=1\textwidth]{./unisalento logo.png} \\
+    \huge {Gestione dei Big Data} \\
+}
+
+\author{Emanuele Mele, Matteo Aprile, Roberto Vadacca}
+\date{2022/2023}
+
+\begin{document}
+
+    \maketitle
+    \tableofcontents
+
+    \include{capitoli/introduzione.tex}
+    \include{capitoli/reviweTecnologia.tex}
+    \include{capitoli/studioDiFattibilita.tex}
+    \include{capitoli/progettazione.tex}
+    \include{capitoli/sviluppo.tex}
+    \include{capitoli/conclusioni.tex}
+
+\end{document}
