@@ -98,6 +98,14 @@
 
       </div>
 
+    <!--Check if available books change-->  
+    {% if tmpbooks == 1 %}
+      <script>
+        window.addEventListener('load', function () {
+          alert("Books availability are change !");
+        })  
+      </script>
+    {% endif %}
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

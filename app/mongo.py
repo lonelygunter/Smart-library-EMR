@@ -36,6 +36,37 @@ def random_seats(entitiesCollection):
     newvalues = { "$set": { "attrs.https://uri=etsi=org/ngsi-ld/default-context/seats.value": seats } }
     entitiesCollection.update_one(myquery, newvalues)
 
+def change_seats(entitiesCollection,number_seats):
+    record = entitiesCollection.find( {"_id.type":"https://schema.org/Library"},{"_id":1,"creDate":1, "attrs":1, "attrNames":1, "modDate":1, "lastCorrelator":1})
+    for rec in record:
+        seats = rec.get("attrs").get("https://uri=etsi=org/ngsi-ld/default-context/seats").get("value")
+        seats = int(seats)
+    seats = seats + number_seats
+    myquery = {"_id.id":"urn:ngsi-ld:Library:library001"}
+    newvalues = { "$set": { "attrs.https://uri=etsi=org/ngsi-ld/default-context/seats.value": seats } }
+    entitiesCollection.update_one(myquery, newvalues)
+
+def change_book_availability(entitiesCollection,isbn):
+    resultbooks = entitiesCollection.find( {"_id.type":"https://schema.org/Book","attrs.https://schema=org/isbn.value":isbn},{"_id":1,"creDate":1, "attrs":1, "attrNames":1, "modDate":1, "lastCorrelator":1})
+    listBook = []
+    for res in resultbooks:
+        book = []
+        book.append(res.get("attrs").get("https://schema=org/isbn").get("value"))
+        book.append(res.get("attrs").get("https://uri=etsi=org/ngsi-ld/title").get("value"))
+        book.append(res.get("attrs").get("https://uri=etsi=org/ngsi-ld/description").get("value"))
+        book.append(res.get("attrs").get("https://schema=org/author").get("value"))
+        book.append(res.get("attrs").get("https://uri=fiware=org/ns/data-models#category").get("value"))
+        book.append(res.get("attrs").get("https://schema=org/image").get("value"))
+        book.append(res.get("attrs").get("https://schema=org/value").get("value"))
+        listBook.append(book)
+    if (listBook[0][6] == 0):
+        listBook[0][6] = 1
+    else:
+        listBook[0][6] = 0
+
+    myquery = {"attrs.https://schema=org/isbn.value":isbn}
+    newvalues = { "$set": { "attrs.https://schema=org/value.value": listBook[0][6] } }
+    entitiesCollection.update_one(myquery, newvalues)
 
 def list_all_category(entitiesCollection):
     resultCategory = entitiesCollection.find( {"_id.type":"https://uri.etsi.org/ngsi-ld/default-context/Category"},{"_id":1,"creDate":1, "attrs":1, "attrNames":1, "modDate":1, "lastCorrelator":1})

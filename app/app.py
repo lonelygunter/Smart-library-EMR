@@ -8,12 +8,14 @@ app = Flask(__name__)
 
 email = " "
 passw = " "
-seatsControl = 0
+seatsControl = 30 #notify changing seats
+booksControl = 0 #notify changin availability
 
 #fw: main page
 @app.route("/") #http://127.0.0.1:5000
 def index():
     entitiesCollection = mongo_connection_entities()
+    #check if seats number change
     seats = get_seats(entitiesCollection)
     seatsID = checkSeats(seatsControl,int(seats))
     return render_template("index.html", seats = seats, seatsID = seatsID)
@@ -137,16 +139,21 @@ def books_notavailable():
 
 #fw: books page 
 @app.route("/books.html")
-
 def books():
     entitiesCollection = mongo_connection_entities()
-    random_seats(entitiesCollection) #cambia il numero di persona sedute
+    #random_seats(entitiesCollection) #cambia il numero di persona sedute
 
     listBook = list_all_books(entitiesCollection)
         
     listCategory = list_all_category(entitiesCollection)
+
+    #check if available books is change
+    global booksControl
+    tmpbooks = booksControl
+    if booksControl == 1:
+        booksControl = 0
   
-    return render_template("books.html",resultBooks=listBook, resultCategory=listCategory)
+    return render_template("books.html",resultBooks=listBook, resultCategory=listCategory, tmpbooks = tmpbooks)
 
 #fw: search books
 @app.route("/search", methods=["POST"])
@@ -235,6 +242,36 @@ def insert_category():
     else:
         remove_category_by_name(entitiesCollection,categoryName)
         
+    return redirect("/books.html")
+
+#sensor handler
+@app.route("/sensor.html")
+def sensor_hander():
+     return render_template("sensor.html")
+
+#add or remove seats
+@app.route("/sensor_seats", methods=["POST"])
+def sensor_seats():
+
+    entitiesCollection = mongo_connection_entities()
+
+    add_or_remove_people = request.form.get('number_people')
+    add_or_remove_people = int(add_or_remove_people)
+    change_seats(entitiesCollection,add_or_remove_people)
+
+    return redirect("/")
+
+#modify book availability 
+@app.route("/sensor_books", methods=["POST"])
+def sensor_books():
+    entitiesCollection = mongo_connection_entities()
+    isbn = request.form.get('isbn')
+
+    change_book_availability(entitiesCollection,isbn)
+    #change available books state
+    global booksControl
+    booksControl = 1
+
     return redirect("/books.html")
 
 # ------- html block ---------
