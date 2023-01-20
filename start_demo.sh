@@ -470,7 +470,7 @@ curl -L -X POST 'http://localhost:1026/ngsi-ld/v1/subscriptions/' \
   "notification": {
     "format": "keyValues",
     "endpoint": {
-      "uri": "http://sito:3000(porta)/test/test",
+      "uri": "http://127.0.0.1:5000/sensorBooks",
       "accept": "application/json"
     }
   },
@@ -488,7 +488,7 @@ curl -L -X POST 'http://localhost:1026/ngsi-ld/v1/subscriptions/' \
   "notification": {
     "format": "keyValues",
     "endpoint": {
-      "uri": "http://sito:3000(porta)/test/test",
+      "uri": "http://127.0.0.1:5000/sensorSeats",
       "accept": "application/json"
     }
   },
