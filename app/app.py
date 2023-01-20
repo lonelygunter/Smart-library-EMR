@@ -274,6 +274,12 @@ def sensor_books():
 
     return redirect("/books.html")
 
+#sensorSeats
+@app.route("/sensorBooks", methods=["POST","GET"])
+def sensor_fw_seats():
+    print("ECCOMI")
+    return redirect("/")
+
 # ------- html block ---------
 
 #navbar menu
