@@ -69,11 +69,11 @@ def change_book_availability(entitiesCollection,isbn):
     entitiesCollection.update_one(myquery, newvalues)
 
 def list_all_category(entitiesCollection):
-    resultCategory = entitiesCollection.find( {"_id.type":"https://uri.etsi.org/ngsi-ld/default-context/Category"},{"_id":1,"creDate":1, "attrs":1, "attrNames":1, "modDate":1, "lastCorrelator":1})
+    resultCategory = entitiesCollection.find( {"_id.type":"https://schema.org/Category"},{"_id":1,"creDate":1, "attrs":1, "attrNames":1, "modDate":1, "lastCorrelator":1})
     listCategory = []
     for res in resultCategory:
         category = []
-        category.append(res.get("attrs").get("https://uri=etsi=org/ngsi-ld/default-context/categoryName").get("value"))
+        category.append(res.get("attrs").get("https://schema=org/name").get("value"))
         listCategory.append(category)
     return listCategory
 
@@ -329,14 +329,14 @@ def insert_new_category(entitiesCollection,categoryName):
     cat = {
             "_id": {
                 "id": "urn:ngsi-ld:Category:category" + str(random.randint(0, 999)),
-                "type": "https://uri.etsi.org/ngsi-ld/default-context/Category",
+                "type": "https://schema.org/Category",
                 "servicePath": "/"
             },
             "attrNames": [
                 "https://uri.etsi.org/ngsi-ld/default-context/categoryName"
             ],
             "attrs": {
-                "https://uri=etsi=org/ngsi-ld/default-context/categoryName": {
+                "https://schema=org/name": {
                 "type": "Property",
                 "creDate": 1673635663.5077872,
                 "modDate": 1673635663.5077872,
@@ -351,4 +351,4 @@ def insert_new_category(entitiesCollection,categoryName):
     entitiesCollection.insert_one(cat)
 
 def remove_category_by_name(entitiesCollection,categoryName):
-    entitiesCollection.delete_one({"attrs.https://uri=etsi=org/ngsi-ld/default-context/categoryName.value":categoryName})
+    entitiesCollection.delete_one({"attrs.https://schema=org/name.value":categoryName})
