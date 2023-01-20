@@ -494,3 +494,13 @@ curl -L -X POST 'http://localhost:1026/ngsi-ld/v1/subscriptions/' \
   },
    "@context": "http://context/ngsi-context.jsonld"
 }'
+
+#simulate data sent by motion sensor
+curl -L -X POST 'http://localhost:7896/iot/d?k=testapikey&i=motion001' \
+    -H 'Content-Type: text/plain' \
+    --data-raw 'm|1'
+
+#simulate data sent by book scanner sensor
+curl -L -X POST 'http://localhost:7896/iot/d?k=testapikey&i=scanner001' \
+    -H 'Content-Type: text/plain' \
+    --data-raw 'i|1234567890'
