@@ -252,13 +252,11 @@ def sensor_hander():
 #add or remove seats
 @app.route("/sensor_seats", methods=["POST"])
 def sensor_seats():
-
-    entitiesCollection = mongo_connection_entities()
-
     add_or_remove_people = request.form.get('number_people')
     add_or_remove_people = int(add_or_remove_people)
+    os.system("curl -iX POST 'http://localhost:7896/iot/json?k=testapikey&i=motion001' -H 'Content-Type: application/json' --data-raw '{\"" + str(add_or_remove_people) + "\": 1}'")
+    entitiesCollection = mongo_connection_entities()
     change_seats(entitiesCollection,add_or_remove_people)
-
     return redirect("/")
 
 #modify book availability 
@@ -266,7 +264,7 @@ def sensor_seats():
 def sensor_books():
     entitiesCollection = mongo_connection_entities()
     isbn = request.form.get('isbn')
-
+    os.system("curl -iX POST 'http://localhost:7896/iot/json?k=testapikey&i=scanner001' -H 'Content-Type: application/json' --data-raw '{\"" + isbn + "\": 123}'")
     change_book_availability(entitiesCollection,isbn)
     #change available books state
     global booksControl
@@ -274,10 +272,22 @@ def sensor_books():
 
     return redirect("/books.html")
 
-#sensorSeats
-@app.route("/sensorBooks", methods=["POST"])
-def handle_notification():
+# -------- SENSOR -------------
+
+#sensorBooks
+@app.route("/sensorBooksNotification", methods=["POST"])
+def handle_notification_books():
     print("ECCOMI")
+    data = request.data
+    print(json.loads(data))
+    return "notifica arrivata"
+
+#sensorSeats
+@app.route("/sensorSeatsNotification", methods=["POST"])
+def handle_notification_seats():
+    print("ECCOMI")
+    data = request.data
+    print(json.loads(data))
     return "notifica arrivata"
 
 # ------- html block ---------
@@ -308,4 +318,4 @@ def test():
     return render_template("nav.html")
     
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000,debug=True)
+    app.run(host='0.0.0.0', port=5050,debug=True)

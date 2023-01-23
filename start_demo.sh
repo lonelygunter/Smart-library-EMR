@@ -471,7 +471,7 @@ curl -L -X POST 'http://localhost:1026/ngsi-ld/v1/subscriptions/' \
   "notification": {
     "format": "keyValues",
     "endpoint": {
-      "uri": "http://127.0.0.1:5000/sensorBooks",
+      "uri": "http://127.0.0.1:5050/sensorBooks",
       "accept": "application/json"
     }
   },
@@ -489,7 +489,44 @@ curl -L -X POST 'http://localhost:1026/ngsi-ld/v1/subscriptions/' \
   "notification": {
     "format": "keyValues",
     "endpoint": {
-      "uri": "http://10.20.10.100:5000/sensorBooks",
+      "uri": "http://10.20.11.165:5050/sensorBooks",
+      "accept": "application/json"
+    }
+  },
+   "@context": "http://context/ngsi-context.jsonld"
+}'
+
+#la subscription per venire notificati ogni volta che si prende un libro
+curl -L -X POST 'http://localhost:1026/ngsi-ld/v1/subscriptions/' \
+-H 'Content-Type: application/ld+json' \
+-H 'NGSILD-Tenant: openiot' \
+--data-raw '{
+  "description": "Notificami quando entra o esce qualcuno",
+  "type": "Subscription",
+  "entities": [{"type": "Device"}],
+  "watchedAttributes": ["motion"],
+  "notification": {
+    "format": "keyValues",
+    "endpoint": {
+      "uri": "http://127.0.0.1:5050/sensorSeatsNotification",
+      "accept": "application/json"
+    }
+  },
+   "@context": "http://context/ngsi-context.jsonld"
+}'
+
+curl -L -X POST 'http://localhost:1026/ngsi-ld/v1/subscriptions/' \
+-H 'Content-Type: application/ld+json' \
+-H 'NGSILD-Tenant: openiot' \
+--data-raw '{
+  "description": "Notificami quando entra o esce qualcuno",
+  "type": "Subscription",
+  "entities": [{"type": "Device"}],
+  "watchedAttributes": ["motion"],
+  "notification": {
+    "format": "keyValues",
+    "endpoint": {
+      "uri": "http://10.20.11.165:5050/sensorSeatsNotification",
       "accept": "application/json"
     }
   },
