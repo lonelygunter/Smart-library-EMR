@@ -254,7 +254,7 @@ def sensor_hander():
 def sensor_seats():
     add_or_remove_people = request.form.get('number_people')
     add_or_remove_people = int(add_or_remove_people)
-    os.system("curl -iX POST 'http://localhost:7896/iot/json?k=testapikey&i=motion001' -H 'Content-Type: application/json' --data-raw '{\"" + str(add_or_remove_people) + "\": 1}'")
+    os.system("curl -iX POST 'http://localhost:7896/iot/json?k=testapikey&i=motion001' -H 'Content-Type: application/json' --data-raw '{\"m\": \"" + str(add_or_remove_people) + "\"}'")
     entitiesCollection = mongo_connection_entities()
     change_seats(entitiesCollection,add_or_remove_people)
     return redirect("/")
@@ -264,7 +264,7 @@ def sensor_seats():
 def sensor_books():
     entitiesCollection = mongo_connection_entities()
     isbn = request.form.get('isbn')
-    os.system("curl -iX POST 'http://localhost:7896/iot/json?k=testapikey&i=scanner001' -H 'Content-Type: application/json' --data-raw '{\"" + isbn + "\": 123}'")
+    os.system("curl -iX POST 'http://localhost:7896/iot/json?k=testapikey&i=scanner001' -H 'Content-Type: application/json' --data-raw '{\"i\": \"" + str(isbn) + "\"}'")
     change_book_availability(entitiesCollection,isbn)
     #change available books state
     global booksControl
