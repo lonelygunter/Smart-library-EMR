@@ -15,3 +15,11 @@ Resources and software that we used:
 ## Prototype architecture
 ![](./imgREADME/arclog.png)
 
+## Use cases: someone enters the library
+![](./imgREADME/room.gif)
+
+## Use cases: someone take a book
+![](./imgREADME/book.gif)
+
+## Use cases: someone is near the library
+![](./imgREADME/near.gif)
