@@ -97,8 +97,8 @@ curl -iX POST 'http://localhost:1026/ngsi-ld/v1/entities/' -H 'Content-Type: app
         "value": "root@root"
     },
     "password": {
-    	"type":"Property",
-    	"value": "63a9f0ea7bb98050796b649e85481845"
+        "type":"Property",
+        "value": "63a9f0ea7bb98050796b649e85481845"
     }, 
     "surname": {
         "type": "Property",
@@ -378,7 +378,7 @@ curl -iX POST 'http://localhost:4041/iot/services' \
             "apikey": "testapikey",
             "cbroker": "http://orion:1026",
             "entity_type": "Device",
-            "resource": "/iot/d",
+            "resource": "/iot/json",
             "attributes": [
                 {
                     "object_id": "m", "name": "motion", "type": "Property"
@@ -462,6 +462,7 @@ curl -L -X POST 'http://localhost:4041/iot/devices' \
 #la subscription per venire notificati ogni volta che si prende un libro
 curl -L -X POST 'http://localhost:1026/ngsi-ld/v1/subscriptions/' \
 -H 'Content-Type: application/ld+json' \
+-H 'NGSILD-Tenant: openiot' \
 --data-raw '{
   "description": "Notificami quando viene prelevato un libro",
   "type": "Subscription",
@@ -477,30 +478,20 @@ curl -L -X POST 'http://localhost:1026/ngsi-ld/v1/subscriptions/' \
    "@context": "http://context/ngsi-context.jsonld"
 }'
 
-#la subscription per venire notificati ogni volta che entra qualcuno 
 curl -L -X POST 'http://localhost:1026/ngsi-ld/v1/subscriptions/' \
 -H 'Content-Type: application/ld+json' \
+-H 'NGSILD-Tenant: openiot' \
 --data-raw '{
-  "description": "Notificami quando entra o esce qualcuno",
+  "description": "Notificami quando viene prelevato un libro",
   "type": "Subscription",
   "entities": [{"type": "Device"}],
-  "watchedAttributes": ["motion"],
+  "watchedAttributes": ["isbn"],
   "notification": {
     "format": "keyValues",
     "endpoint": {
-      "uri": "http://127.0.0.1:5000/sensorSeats",
+      "uri": "http://10.20.10.100:5000/sensorBooks",
       "accept": "application/json"
     }
   },
    "@context": "http://context/ngsi-context.jsonld"
 }'
-
-#simulate data sent by motion sensor
-curl -L -X POST 'http://localhost:7896/iot/d?k=testapikey&i=motion001' \
-    -H 'Content-Type: text/plain' \
-    --data-raw 'm|1'
-
-#simulate data sent by book scanner sensor
-curl -L -X POST 'http://localhost:7896/iot/d?k=testapikey&i=scanner001' \
-    -H 'Content-Type: text/plain' \
-    --data-raw 'i|1234567890'

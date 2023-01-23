@@ -275,10 +275,10 @@ def sensor_books():
     return redirect("/books.html")
 
 #sensorSeats
-@app.route("/sensorBooks", methods=["POST","GET"])
-def sensor_fw_seats():
+@app.route("/sensorBooks", methods=["POST"])
+def handle_notification():
     print("ECCOMI")
-    return redirect("/")
+    return "notifica arrivata"
 
 # ------- html block ---------
 
@@ -307,3 +307,5 @@ def test():
     print("Ciao Test")
     return render_template("nav.html")
     
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000,debug=True)
