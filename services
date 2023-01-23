@@ -88,7 +88,7 @@ waitForMongo () {
 
 loadData () {
 	echo -e "\n⏳ Loading data\n"
-	./start_demo.sh
+	./import_data
 }
 
 addDatabaseIndex () {

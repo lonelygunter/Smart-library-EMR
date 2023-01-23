@@ -317,4 +317,4 @@ def test():
     return render_template("nav.html")
     
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5050,debug=True)
+    app.run(host='172.18.1.200', port=5050,debug=True)

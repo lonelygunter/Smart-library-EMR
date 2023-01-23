@@ -38,6 +38,8 @@ services:
 
   # IoT-Agent is configured for the JSON Protocol
   iot-agent:
+    labels:
+      org.fiware: 'smartlib'
     image: fiware/iotagent-json:${JSON_VERSION}
     hostname: iot-agent
     container_name: fiware-iot-agent
@@ -74,6 +76,8 @@ services:
 
   #smart library
   smart-library:
+    labels:
+      org.fiware: 'smartlib'
     build: ../app
     hostname: smartlib
     container_name: smartlib
@@ -82,7 +86,8 @@ services:
     ports:
       - "5050:5050"
     networks:
-      - default
+      default:
+        ipv4_address: 172.18.1.200
     environment:
       - DEBUG=smartlib:*
       - WEB_APP_PORT=${SMARTLIB_APP_PORT} # Port used by the content provider proxy and web-app for viewing data
