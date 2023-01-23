@@ -3,8 +3,11 @@
 
 from mongo import *
 from flask import *
+import logging
 
 app = Flask(__name__)
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 email = " "
 passw = " "
@@ -254,7 +257,7 @@ def sensor_hander():
 def sensor_seats():
     add_or_remove_people = request.form.get('number_people')
     add_or_remove_people = int(add_or_remove_people)
-    os.system("curl -iX POST 'http://localhost:7896/iot/json?k=testapikey&i=motion001' -H 'Content-Type: application/json' --data-raw '{\"m\": \"" + str(add_or_remove_people) + "\"}'")
+    os.system("curl -iX POST 'http://iot-agent:7896/iot/json?k=testapikey&i=motion001' -H 'Content-Type: application/json' --data-raw '{\"m\": \"" + str(add_or_remove_people) + "\"}'")
     entitiesCollection = mongo_connection_entities()
     change_seats(entitiesCollection,add_or_remove_people)
     return redirect("/")
@@ -264,7 +267,7 @@ def sensor_seats():
 def sensor_books():
     entitiesCollection = mongo_connection_entities()
     isbn = request.form.get('isbn')
-    os.system("curl -iX POST 'http://localhost:7896/iot/json?k=testapikey&i=scanner001' -H 'Content-Type: application/json' --data-raw '{\"i\": \"" + str(isbn) + "\"}'")
+    os.system("curl -iX POST 'http://iot-agent:7896/iot/json?k=testapikey&i=scanner001' -H 'Content-Type: application/json' --data-raw '{\"i\": \"" + str(isbn) + "\"}'")
     change_book_availability(entitiesCollection,isbn)
     #change available books state
     global booksControl
@@ -277,17 +280,13 @@ def sensor_books():
 #sensorBooks
 @app.route("/sensorBooksNotification", methods=["POST"])
 def handle_notification_books():
-    print("ECCOMI")
-    data = request.data
-    print(json.loads(data))
+    logger.info(json.loads(request.data))  
     return "notifica arrivata"
 
 #sensorSeats
 @app.route("/sensorSeatsNotification", methods=["POST"])
 def handle_notification_seats():
-    print("ECCOMI")
-    data = request.data
-    print(json.loads(data))
+    logger.info(json.loads(request.data))  
     return "notifica arrivata"
 
 # ------- html block ---------

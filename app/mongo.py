@@ -6,13 +6,13 @@ import os
 
 #mongo connection db
 def mongo_connection():
-    client = MongoClient("mongodb://localhost:27017")
+    client = MongoClient("mongodb://mongo-db:27017")
     db = client.orion
     return db
 
 #connection to collection entities
 def mongo_connection_entities():
-    client = MongoClient("mongodb://localhost:27017")
+    client = MongoClient("mongodb://mongo-db:27017")
     db = client.orion
     return db.entities
 
