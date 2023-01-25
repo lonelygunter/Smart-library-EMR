@@ -12,6 +12,16 @@ Resources and software that we used:
 - [IoT Agent](https://fiware-tutorials.readthedocs.io/en/stable/iot-agent/#:~:text=An%20IoT%20Agent%20is%20a,using%20their%20own%20native%20protocols.): component used to act as an intermediary between sensors and the Context Broker
 - [Context Broker: Orion-LD](https://github.com/FIWARE/context.Orion-LD): component used to provide easy access to information context
 
+## How to start and stop services
+To start is easy:
+```
+$ ./services start
+```
+to stop it’s easy the same way
+```
+$ ./services stop
+```
+
 ## Prototype architecture
 ![](./imgREADME/arclog.png)
 
