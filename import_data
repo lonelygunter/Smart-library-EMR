@@ -152,7 +152,7 @@ curl -iX POST 'http://localhost:1026/ngsi-ld/v1/entities/' -H 'Content-Type: app
     },                                             
     "available": {                             
         "type": "Property",
-        "value": "1"
+        "value": 0
     },    
     "@context": "http://context/ngsi-context.jsonld"
 }'
@@ -187,7 +187,7 @@ curl -iX POST 'http://localhost:1026/ngsi-ld/v1/entities/' -H 'Content-Type: app
     },                                             
     "available": {                             
         "type": "Property",
-        "value": "1"
+        "value": 0
     },    
     "@context": "http://context/ngsi-context.jsonld"
 }'
@@ -222,7 +222,7 @@ curl -iX POST 'http://localhost:1026/ngsi-ld/v1/entities/' -H 'Content-Type: app
     },                                             
     "available": {                             
         "type": "Property",
-        "value": "1"
+        "value": 0
     },    
     "@context": "http://context/ngsi-context.jsonld"
 }'
@@ -257,7 +257,7 @@ curl -iX POST 'http://localhost:1026/ngsi-ld/v1/entities/' -H 'Content-Type: app
     },                                             
     "available": {                             
         "type": "Property",
-        "value": "1"
+        "value": 0
     },    
     "@context": "http://context/ngsi-context.jsonld"
 }'
@@ -292,7 +292,7 @@ curl -iX POST 'http://localhost:1026/ngsi-ld/v1/entities/' -H 'Content-Type: app
     },                                             
     "available": {                             
         "type": "Property",
-        "value": "1"
+        "value": 0
     },    
     "@context": "http://context/ngsi-context.jsonld"
 }'
@@ -327,7 +327,7 @@ curl -iX POST 'http://localhost:1026/ngsi-ld/v1/entities/' -H 'Content-Type: app
     },                                             
     "available": {                             
         "type": "Property",
-        "value": "1"
+        "value": 0
     },    
     "@context": "http://context/ngsi-context.jsonld"
 }'
@@ -362,7 +362,7 @@ curl -iX POST 'http://localhost:1026/ngsi-ld/v1/entities/' -H 'Content-Type: app
     },                                             
     "available": {                             
         "type": "Property",
-        "value": "1"
+        "value": 0
     },    
     "@context": "http://context/ngsi-context.jsonld"
 }'

@@ -122,7 +122,7 @@ def register():
 def books_available():
     entitiesCollection = mongo_connection_entities()
 
-    listBook = list_all_books_filtered_by_available(entitiesCollection,"0")
+    listBook = list_all_books_filtered_by_available(entitiesCollection,0)
 
     listCategory = list_all_category(entitiesCollection)
     
@@ -134,7 +134,7 @@ def books_notavailable():
 
     entitiesCollection = mongo_connection_entities()
 
-    listBook = list_all_books_filtered_by_available(entitiesCollection,"1")
+    listBook = list_all_books_filtered_by_available(entitiesCollection,1)
 
     listCategory = list_all_category(entitiesCollection)
     
@@ -149,6 +149,8 @@ def books():
     listBook = list_all_books(entitiesCollection)
         
     listCategory = list_all_category(entitiesCollection)
+
+    print(listBook)
 
     #check if available books is change
     global booksControl

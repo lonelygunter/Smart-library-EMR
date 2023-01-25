@@ -1,13 +1,11 @@
 Per far funzionare il tutto installare docker e mongodb.
 
-1 - Avviare l'applicazione flask.
+1 - Avviare Docker.
 2 - Aprire un terminale in questa cartella e digitare:
 
 	./services start
 
-	successivamente
-
-	./start_demo.sh
+	successivamente connettersi all'indirizzo: http://localhost:5050/
 
 3 - Per fermare il tutto digitare
 
