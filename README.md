@@ -13,11 +13,13 @@ Resources and software that we used:
 - [Context Broker: Orion-LD](https://github.com/FIWARE/context.Orion-LD): component used to provide easy access to information context
 
 ## How to start and stop services
-To start is easy:
+To start the services is easy:
 ```
 $ ./services start
 ```
-to stop it’s easy the same way
+after you can connect to http://localhost:5050/
+
+To stop the serveces it’s easy the same way
 ```
 $ ./services stop
 ```
