@@ -179,6 +179,7 @@ case "${command}" in
 	"stop")
 		export $(cat .env | grep "#" -v)
 		stoppingContainers
+		docker image rm smartlib-smart-library
 		;;
 	"start")
 		export $(cat .env | grep "#" -v)
